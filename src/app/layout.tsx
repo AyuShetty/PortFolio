@@ -79,6 +79,12 @@ export default function RootLayout({
         </Script>
         <IntroOverlay />
         <div className="site-shell">{children}</div>
+        
+        {/* Progress Note */}
+        <div className="progress-badge" aria-label="Website progress note">
+          <div className="progress-badge-dot"></div>
+          <span>Website in progress • Ready in 3-4 days</span>
+        </div>
         <Script id="performance-polyfill" strategy="afterInteractive">
           {`(function () {
   if (typeof window === "undefined") return;

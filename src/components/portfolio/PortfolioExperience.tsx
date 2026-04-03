@@ -117,15 +117,13 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 			{/* Blur Layer */}
 			<div className="blur-layer" aria-hidden="true" />
 
-			{/* Fixed Intro Text */}
-			<div className="intro-text" aria-hidden="true">
-				Scroll to enter
-			</div>
 
-			{/* Content Starts Below */}
-			<main className="content portfolio-layout">
-				<header className="hero-content hero-content--below">
-					<PrimaryNav />
+		{/* Fixed Navigation */}
+		<PrimaryNav className="primary-nav--fixed" />
+
+		{/* Content Starts Below */}
+		<main className="content portfolio-layout">
+			<header className="hero-content hero-content--below">
 					<div className="hero-copy">
 						<h1 className="hero-title">Ayush Shetty</h1>
 						<p className="hero-subtitle">

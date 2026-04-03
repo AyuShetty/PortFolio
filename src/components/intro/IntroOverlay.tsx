@@ -151,7 +151,7 @@ export function IntroOverlay() {
       // Ignore storage failures and continue the transition.
     }
 
-    setExitTarget("about");
+    setExitTarget(null);
     setShouldFadeOut(true);
     setState("closing");
   }, []);
@@ -292,7 +292,7 @@ export function IntroOverlay() {
                       whileTap={{ scale: 0.98 }}
                       className="rounded-full bg-[#0ea5e9] px-5 py-3 text-sm font-semibold text-white transition-shadow duration-200 hover:shadow-[0_12px_28px_rgba(14,165,233,0.24)]"
                     >
-                      Know More
+                      Visit Website
                     </motion.button>
                     <div className="flex items-center gap-2 sm:gap-2.5">
                       <motion.a
