@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "file": "event-01.jpg",
+      "title": "Conference Stage",
+      "category": "conference",
+      "featured": true
+    },
+    {
+      "file": "event-02.jpg",
+      "title": "Workshop Session",
+      "category": "workshop"
+    },
+    {
+      "file": "event-03.jpg",
+      "title": "Launch Night",
+      "category": "launch"
+    }
+  ]
+}

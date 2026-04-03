@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "file": "project-01.jpg",
+      "title": "Atlas Checkout",
+      "featured": true
+    },
+    {
+      "file": "project-02.jpg",
+      "title": "Canopy OS Monitoring"
+    },
+    {
+      "file": "project-03.jpg",
+      "title": "Ember Studio Timeline"
+    }
+  ]
+}
