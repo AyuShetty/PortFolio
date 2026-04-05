@@ -186,11 +186,11 @@ export const PROJECTS: ProjectEntry[] = [
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     title: "Frontend & Interaction",
-    skills: ["Next.js App Router", "React", "TypeScript", "Framer Motion", "GSAP", "WebGL"],
+    skills: ["Next.js App Router", "React", "TypeScript", "Framer Motion", "GSAP"],
   },
   {
     title: "Systems & Cloud",
-    skills: ["Node.js", "Rust", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
+    skills: ["Node.js", "PostgreSQL", "Cloud Architecture", "API Design"],
   },
   {
     title: "Process & Product",
@@ -252,12 +252,11 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
   {
     title: "Eth.Ed",
     subtitle: "AI-powered Web3 learning platform",
-    duration: "Hackathon build",
     logoText: "ED",
     highlights: [
-      "ENS-based certificates and credentialing",
-      "Gamified learning tracks",
-      "Micro-payments for lessons",
+      "Gamified learning tracks with AI personalization",
+      "Smart contract integration for lesson accessibility",
+      "Full-stack Web3 architecture",
     ],
   },
   {
@@ -323,17 +322,17 @@ export const EVENTS: EventEntry[] = [
     date: "Mar 2026",
     year: "2026",
     location: "Mumbai, India",
-    summary: "Won the ENS Pool Prize for Eth.Ed, an AI-powered Web3 learning platform.",
+    summary: "Built Eth.Ed, an AI-powered Web3 learning platform with smart contract integration.",
     description:
-      "Built and shipped Eth.Ed at ETHMumbai 2026, winning the ENS Pool Prize. The project integrates AI agents for personalized learning, ENS-based certificates for credentialing, and micropayments for lesson accessibility. Collaborated with teammates to deliver a production-ready full-stack application.",
+      "Shipped Eth.Ed at ETHMumbai 2026, an AI-powered learning platform integrating personalized learning paths, gamification, and smart contract-based micropayments for lesson accessibility. Collaborated with teammates to deliver a production-ready full-stack application.",
     role: "Full-Stack Product Engineer",
     highlights: [
-      "Won ENS Pool Prize",
       "Built AI-powered learning platform with gamification",
-      "Integrated ENS certificates and smart contract micropayments",
+      "Integrated smart contract micropayments for lesson accessibility",
       "Led product architecture and user experience design",
+      "Deployed production-grade full-stack Web3 application",
     ],
-    tags: ["Hackathon", "Web3", "AI", "ENS"],
+    tags: ["Web3", "AI", "Product"],
     imageIds: ["ethmumbai-2026-01", "ethmumbai-2026-02"],
   },
   {
@@ -440,15 +439,15 @@ export const ACHIEVEMENTS: AchievementEntry[] = [
     ],
   },
   {
-    title: "Hackathon Builder (ETHGlobal Delhi + ETHMumbai 2026)",
+    title: "Full-Stack Web3 Product Building",
     year: "2026",
     summary:
-      "Shipped Eth.Ed and won the ENS Pool Prize at ETHMumbai 2026.",
+      "Shipped production-grade Web3 applications combining AI, smart contracts, and user-centric design.",
     memories: [
       {
-        title: "Hackathon delivery",
+        title: "Web3 product delivery",
         detail:
-          "Built Eth.Ed and earned the ENS Pool Prize for the team.",
+          "Built Eth.Ed as a full-stack Web3 learning platform with AI personalization and smart contract payments.",
       },
     ],
   },
@@ -456,11 +455,11 @@ export const ACHIEVEMENTS: AchievementEntry[] = [
     title: "Web3 + AI Product Development",
     year: "2024 - Present",
     summary:
-      "Built full-stack products integrating AI agents, ENS, smart contracts, and micropayments.",
+      "Built full-stack products integrating AI agents, smart contracts, and decentralized infrastructure.",
     memories: [
       {
         title: "Full-stack builds",
-        detail: "Delivered AI, ENS, smart contract, and micropayment integrations in real products.",
+        detail: "Delivered AI, smart contract, and Web3 infrastructure integrations in production applications.",
       },
     ],
   },
@@ -478,9 +477,9 @@ export const TOP_HIGHLIGHTS: HighlightEntry[] = [
       "Wrote and contributed deep-dive Ethereum content on EtherWorld to make protocol research accessible.",
   },
   {
-    title: "Hackathon Wins (ETHGlobal Delhi + ETHMumbai 2026)",
+    title: "Web3 Product Engineering",
     summary:
-      "Shipped Eth.Ed and won the ENS Pool Prize at ETHMumbai 2026.",
+      "Built and shipped production-grade Web3 applications combining AI personalization, smart contracts, and decentralized infrastructure.",
   },
   {
     title: "COPE President",
@@ -545,9 +544,9 @@ export const PROJECT_WORK: ProjectWorkEntry[] = [
     title: "Eth.Ed",
     summary: "AI-powered Web3 learning platform.",
     details: [
-      "ENS-based certificates",
-      "Gamified learning tracks",
-      "Micro-payments for lessons",
+      "Gamified learning tracks with AI personalization",
+      "Smart contract integration for micropayments",
+      "Full-stack Web3 architecture and deployment",
     ],
   },
   {
