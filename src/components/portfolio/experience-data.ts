@@ -78,6 +78,21 @@ export type PoapEntry = {
   badgeUrl?: string;
 };
 
+export type EventEntry = {
+  id: string;
+  title: string;
+  date: string;
+  year: string;
+  location: string;
+  summary: string;
+  description: string;
+  role?: string;
+  highlights: string[];
+  imageIds?: string[];
+  tags: string[];
+  website?: string;
+};
+
 export type HighlightEntry = {
   title: string;
   summary: string;
@@ -125,6 +140,17 @@ export type TestimonialEntry = {
   role: string;
 };
 
+export type GitHubRepoEntry = {
+  name: string;
+  description: string | null;
+  url: string;
+  stars: number;
+  language: string | null;
+  featured?: boolean;
+  lastUpdated: string;
+  commitActivity?: number;
+};
+
 export const ZONES: Array<{ key: ZoneKey; label: string; range: [number, number] }> = [
   { key: "hero", label: "Arrival", range: [0, 0.24] },
   { key: "projects", label: "Works", range: [0.24, 0.53] },
@@ -143,17 +169,6 @@ export const PROJECTS: ProjectEntry[] = [
     impact: "Built an end-to-end learning platform with payments and credentialing.",
     href: "/projects/eth-ed",
     tags: ["Web3", "AI", "Education"],
-  },
-  {
-    id: "agent-tip",
-    title: "AgentTip",
-    summary: "Hackathon project with AI agents auto-paying creators via ENS-backed flows.",
-    stack: "AI agents, ENS, x402, Smart contracts",
-    role: "Builder + Mentor",
-    year: "2026",
-    impact: "Mentored and shipped a prize-winning tipping infra prototype.",
-    href: "/projects/agent-tip",
-    tags: ["Hackathon", "AI", "Smart Contracts"],
   },
   {
     id: "eipsinsight",
@@ -220,7 +235,7 @@ export const SOCIALS: SocialEntry[] = [
   { label: "GitHub", href: "https://github.com" },
   { label: "LinkedIn", href: "https://linkedin.com" },
   { label: "X", href: "https://x.com" },
-  { label: "Email", href: "mailto:ayush@example.com" },
+  { label: "Email", href: "mailto:ayush.avarch@gmail.com" },
 ];
 
 export const CONTRIBUTIONS: ContributionEntry[] = [
@@ -243,18 +258,6 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
       "ENS-based certificates and credentialing",
       "Gamified learning tracks",
       "Micro-payments for lessons",
-    ],
-  },
-  {
-    title: "AgentTip",
-    subtitle: "AI + Web3 tipping infrastructure",
-    duration: "ETHMumbai 2026",
-    logoText: "AT",
-    highlights: [
-      "AI agents auto-paying creators",
-      "x402 protocol integration",
-      "ENS-based DeFi will system",
-      "ENS Pool Prize winner",
     ],
   },
   {
@@ -313,6 +316,102 @@ export const EXPERIENCES: ExperienceEntry[] = [
   },
 ];
 
+export const EVENTS: EventEntry[] = [
+  {
+    id: "ethmumbai-2026",
+    title: "ETHMumbai 2026",
+    date: "Mar 2026",
+    year: "2026",
+    location: "Mumbai, India",
+    summary: "Won the ENS Pool Prize for Eth.Ed, an AI-powered Web3 learning platform.",
+    description:
+      "Built and shipped Eth.Ed at ETHMumbai 2026, winning the ENS Pool Prize. The project integrates AI agents for personalized learning, ENS-based certificates for credentialing, and micropayments for lesson accessibility. Collaborated with teammates to deliver a production-ready full-stack application.",
+    role: "Full-Stack Product Engineer",
+    highlights: [
+      "Won ENS Pool Prize",
+      "Built AI-powered learning platform with gamification",
+      "Integrated ENS certificates and smart contract micropayments",
+      "Led product architecture and user experience design",
+    ],
+    tags: ["Hackathon", "Web3", "AI", "ENS"],
+    imageIds: ["ethmumbai-2026-01", "ethmumbai-2026-02"],
+  },
+  {
+    id: "ethglobal-delhi",
+    title: "ETHGlobal Delhi",
+    date: "2024",
+    year: "2024",
+    location: "Delhi, India",
+    summary: "Participated in ETHGlobal Delhi hackathon, building Web3 governance tools.",
+    description:
+      "Contributed to blockchain projects focused on Ethereum governance and tooling. Explored smart contract development, protocol mechanics, and community solutions during this global hackathon.",
+    role: "Blockchain Developer",
+    highlights: [
+      "Explored governance protocols and EIP mechanisms",
+      "Built smart contract prototypes",
+      "Networked with global Web3 builders",
+    ],
+    tags: ["Hackathon", "Web3", "Governance"],
+    imageIds: ["ethglobal-delhi-01"],
+  },
+  {
+    id: "incridea-2024",
+    title: "Incridea Fest 2024",
+    date: "Mar 2024",
+    year: "2024",
+    location: "NMAMIT, Nitte",
+    summary: "Organized and participated in Incridea, a major tech festival and hackathon.",
+    description:
+      "Led publicity and outreach for Incridea Fest 2024, a college-level technology festival featuring workshops, competitions, and innovation challenges. Contributed to event organization and community engagement.",
+    role: "Publicity Committee Member",
+    highlights: [
+      "Managed marketing and brand awareness",
+      "Coordinated participant engagement and logistics",
+      "Organized workshops and tech talks",
+    ],
+    tags: ["Festival", "Community", "Tech"],
+    imageIds: ["incridea-2024-01", "incridea-2024-02"],
+  },
+  {
+    id: "ethereumforge-workshops",
+    title: "ETHERforge Community Workshops",
+    date: "2023-2024",
+    year: "2024",
+    location: "Online & India",
+    summary: "Mentored and guided community members through blockchain development workshops.",
+    description:
+      "Facilitated hands-on workshops introducing developers to Ethereum, smart contracts, and Web3 tooling. Provided mentorship to junior developers learning blockchain concepts and building their first decentralized applications.",
+    role: "Mentor & Workshop Facilitator",
+    highlights: [
+      "Guided 20+ junior developers through blockchain fundamentals",
+      "Created tutorial content and workshop materials",
+      "Facilitated peer learning and debugging sessions",
+      "Built reusable examples and starter templates",
+    ],
+    tags: ["Workshop", "Mentorship", "Education"],
+    imageIds: ["ethereumforge-01"],
+  },
+  {
+    id: "web3-meetups",
+    title: "India Web3 Meetups & Ecosystem Events",
+    date: "2023-2026",
+    year: "2026",
+    location: "Multiple Cities, India",
+    summary: "Active participant and contributor to India's Web3 and Ethereum community.",
+    description:
+      "Regularly attended and contributed to local Web3 meetups, Ethereum community gatherings, and ecosystem events across India. Shared knowledge about protocol developments, governance, and building in Web3.",
+    role: "Community Contributor",
+    highlights: [
+      "Attended 15+ ecosystem events and meetups",
+      "Shared insights on Ethereum governance and protocol research",
+      "Contributed to community discussions and peer learning",
+      "Networked with builders, researchers, and entrepreneurs",
+    ],
+    tags: ["Community", "Networking", "Web3"],
+    imageIds: ["meetup-01", "meetup-02"],
+  },
+];
+
 export const ACHIEVEMENTS: AchievementEntry[] = [
   {
     title: "Ethereum Foundation Grant Contribution",
@@ -344,12 +443,12 @@ export const ACHIEVEMENTS: AchievementEntry[] = [
     title: "Hackathon Builder (ETHGlobal Delhi + ETHMumbai 2026)",
     year: "2026",
     summary:
-      "Built Eth.Ed, mentored AgentTip, and won the ENS Pool Prize at ETHMumbai 2026.",
+      "Shipped Eth.Ed and won the ENS Pool Prize at ETHMumbai 2026.",
     memories: [
       {
         title: "Hackathon delivery",
         detail:
-          "Built Eth.Ed, supported AgentTip, and earned the ENS Pool Prize for the team.",
+          "Built Eth.Ed and earned the ENS Pool Prize for the team.",
       },
     ],
   },
@@ -381,7 +480,7 @@ export const TOP_HIGHLIGHTS: HighlightEntry[] = [
   {
     title: "Hackathon Wins (ETHGlobal Delhi + ETHMumbai 2026)",
     summary:
-      "Built Eth.Ed, mentored AgentTip, and won the ENS Pool Prize at ETHMumbai 2026.",
+      "Shipped Eth.Ed and won the ENS Pool Prize at ETHMumbai 2026.",
   },
   {
     title: "COPE President",
@@ -449,15 +548,6 @@ export const PROJECT_WORK: ProjectWorkEntry[] = [
       "ENS-based certificates",
       "Gamified learning tracks",
       "Micro-payments for lessons",
-    ],
-  },
-  {
-    title: "AgentTip (Hackathon Project)",
-    summary: "AI agents auto-paying creators with Web3 infra.",
-    details: [
-      "x402 protocol integration",
-      "ENS-based DeFi will system",
-      "Automated creator payouts",
     ],
   },
   {

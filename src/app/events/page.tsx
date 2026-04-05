@@ -1,55 +1,76 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
-import { ImageGallery } from "@/components/galleries/ImageGallery";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
-import { POAPS } from "@/components/portfolio/experience-data";
-import { getGalleryImages } from "@/lib/gallery";
+import { EVENTS } from "@/components/portfolio/experience-data";
+import "./events.css";
 
-export const dynamic = "force-dynamic";
-
-export const metadata: Metadata = {
-  title: "Events",
-  description: "Launches, workshops, and community events documented in the gallery.",
-};
-
-export default async function EventsPage() {
-  const images = await getGalleryImages("events");
-
+export default function EventsPage() {
   return (
-    <main className="gallery-layout">
+    <main className="events-page">
       <PrimaryNav />
-      <section className="panel">
-        <h2>Badges & POAPs</h2>
-        <p>Event badges and POAPs collected across community milestones.</p>
-        {POAPS.length > 0 ? (
-          <div className="highlight-grid">
-            {POAPS.slice(0, 3).map((poap) => (
-              <div key={`${poap.title}-${poap.event}`} className="panel-card">
-                <p className="meta">
-                  {poap.year ? `${poap.year} · ${poap.event}` : poap.event}
-                </p>
-                <h3>{poap.title}</h3>
-                {poap.summary && <p>{poap.summary}</p>}
+      
+      <div className="events-container">
+        <section className="events-header">
+          <h1>Events & Community</h1>
+          <p>Hackathons, workshops, and ecosystem participation that shaped my journey</p>
+        </section>
+
+        <div className="events-grid">
+          {EVENTS.map((event, index) => (
+            <article key={event.id} className="event-card" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div className="event-date-badge">
+                <span className="event-year">{event.year}</span>
+                <span className="event-date">{event.date}</span>
               </div>
-            ))}
-          </div>
-        ) : (
-          <p>POAPs will be added after event uploads.</p>
-        )}
-        <div className="section-actions">
-          <Link href="/poaps">View all POAPs</Link>
+
+              <div className="event-content">
+                <h2 className="event-title">{event.title}</h2>
+                
+                <div className="event-meta">
+                  <span className="event-location">📍 {event.location}</span>
+                  {event.role && <span className="event-role">👤 {event.role}</span>}
+                </div>
+
+                <p className="event-summary">{event.summary}</p>
+
+                <p className="event-description">{event.description}</p>
+
+                <div className="event-highlights">
+                  <h3>Key Highlights:</h3>
+                  <ul>
+                    {event.highlights.map((highlight, idx) => (
+                      <li key={idx}>{highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="event-tags">
+                  {event.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {event.website && (
+                  <a href={event.website} target="_blank" rel="noopener noreferrer" className="event-link">
+                    Learn More →
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-      <ImageGallery
-        title="Event Gallery"
-        description="Moments from launches, talks, workshops, and community events. Drop images into public/events and organize order, categories, and featured shots via public/events/gallery.json."
-        images={images}
-        emptyState="No event photos yet. Add files to public/events to populate this gallery."
-        enableFilters
-        enableReorder
-        showFeatured
-        categories={["conference", "workshop", "launch"]}
-      />
+
+        <section className="events-cta">
+          <h2>More Stories</h2>
+          <p>Check out the full gallery to see photos and memories from these events</p>
+          <Link href="/gallery" className="cta-button">
+            View Gallery
+          </Link>
+        </section>
+      </div>
     </main>
   );
 }

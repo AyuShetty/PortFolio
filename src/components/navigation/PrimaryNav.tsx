@@ -5,16 +5,13 @@ import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Highlights", href: "/highlights" },
   { label: "Projects", href: "/projects" },
   { label: "Experience", href: "/experience" },
   { label: "Achievements", href: "/achievements" },
   { label: "Leadership", href: "/leadership" },
-  { label: "Writing", href: "/writing" },
-  { label: "Community", href: "/community" },
   { label: "Certifications", href: "/certifications" },
-  { label: "POAPs", href: "/poaps" },
-  { label: "Results", href: "/results" },
   { label: "Events", href: "/events" },
   { label: "Contact", href: "/#contact" },
 ];

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
+import { LinkedInEmbeds } from "@/components/galleries/LinkedInEmbeds";
 import { ACHIEVEMENTS } from "@/components/portfolio/experience-data";
+import { LINKEDIN_POSTS } from "@/components/portfolio/linkedin-posts";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +42,8 @@ export default function AchievementsPage() {
           ))}
         </div>
       </section>
+
+      <LinkedInEmbeds posts={LINKEDIN_POSTS} category="achievements" />
     </main>
   );
 }
