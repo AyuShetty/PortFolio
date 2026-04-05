@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import DomeGallery, { type DomeGalleryImage } from "@/components/portfolio/DomeGallery";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
+import { EVENTS, POAPS } from "@/components/portfolio/experience-data";
+import type { PoapEntry } from "@/components/portfolio/experience-data";
+import "./gallery.css";
 
 export default function GalleryPage() {
   const [galleryImages, setGalleryImages] = useState<DomeGalleryImage[]>([]);
@@ -24,70 +27,109 @@ export default function GalleryPage() {
     loadImages();
   }, []);
 
+  const getEventPoaps = (eventId: string): PoapEntry[] => {
+    // Filter POAPs associated with this event
+    return POAPS.filter((poap) => poap.event.toLowerCase().includes(eventId) || eventId.includes(poap.event.toLowerCase()));
+  };
+
   return (
     <div className="gallery-page">
-      <style jsx>{`
-        .gallery-page {
-          width: 100vw;
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          background: #0a0a1e;
-          overflow: hidden;
-        }
+      {/* Dome Gallery Section */}
+      <section className="gallery-dome-section">
+        <header className="gallery-header">
+          <PrimaryNav />
+          <h1 className="gallery-title">Memories & Work</h1>
+        </header>
 
-        .gallery-header {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 10;
-          padding: 1.5rem 2rem;
-          background: linear-gradient(to bottom, rgba(10, 10, 30, 0.8), transparent);
-          backdrop-filter: blur(8px);
-        }
+        <div className="gallery-content">
+          {isLoading ? (
+            <div style={{ color: "#888", textAlign: "center" }}>
+              <p>Loading gallery...</p>
+            </div>
+          ) : galleryImages.length > 0 ? (
+            <DomeGallery
+              images={galleryImages}
+              fit={0.85}
+              fitBasis="width"
+              maxVerticalRotationDeg={35}
+              dragSensitivity={1.2}
+            />
+          ) : (
+            <div style={{ color: "#888", textAlign: "center" }}>
+              <p>No images found in gallery</p>
+            </div>
+          )}
+        </div>
+      </section>
 
-        .gallery-content {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-        }
-
-        @media (max-width: 768px) {
-          .gallery-header {
-            padding: 1rem;
-          }
-        }
-      `}</style>
-
-      <header className="gallery-header">
-        <PrimaryNav />
-        <h1 style={{ margin: "0.5rem 0 0 0", fontSize: "1.25rem", color: "#e0e0e0" }}>
-          Memories & Work
-        </h1>
-      </header>
-
-      <div className="gallery-content">
-        {isLoading ? (
-          <div style={{ color: "#888", textAlign: "center" }}>
-            <p>Loading gallery...</p>
+      {/* Events Section */}
+      <section className="events-section">
+        <div className="events-container">
+          <div className="events-header-content">
+            <h2>Events & Milestones</h2>
+            <p>Hackathons, workshops, and ecosystem participation</p>
           </div>
-        ) : galleryImages.length > 0 ? (
-          <DomeGallery
-            images={galleryImages}
-            fit={0.85}
-            fitBasis="width"
-            maxVerticalRotationDeg={35}
-            dragSensitivity={1.2}
-          />
-        ) : (
-          <div style={{ color: "#888", textAlign: "center" }}>
-            <p>No images found in gallery</p>
+
+          <div className="events-grid">
+            {EVENTS.map((event, index) => (
+              <div key={event.id} className="event-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="event-date-badge">
+                  <span className="event-year">{event.year}</span>
+                  <span className="event-date">{event.date}</span>
+                </div>
+
+                <div className="event-content">
+                  <h3 className="event-title">{event.title}</h3>
+
+                  <div className="event-meta">
+                    {event.location && <span className="event-location">📍 {event.location}</span>}
+                    {event.role && <span className="event-role">👤 {event.role}</span>}
+                  </div>
+
+                  <p className="event-summary">{event.summary}</p>
+
+                  <div className="event-highlights">
+                    <h4>Highlights:</h4>
+                    <ul>
+                      {event.highlights.map((highlight, idx) => (
+                        <li key={idx}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="event-tags">
+                    {event.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* POAPs Section */}
+                  {getEventPoaps(event.id).length > 0 && (
+                    <div className="event-poaps">
+                      <h4>🏅 POAPs</h4>
+                      <div className="poaps-list">
+                        {getEventPoaps(event.id).map((poap) => (
+                          <div key={poap.title} className="poap-item">
+                            {poap.badgeUrl && (
+                              <img src={poap.badgeUrl} alt={poap.title} className="poap-badge" />
+                            )}
+                            <div className="poap-info">
+                              <p className="poap-title">{poap.title}</p>
+                              {poap.summary && <p className="poap-summary">{poap.summary}</p>}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        )}
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

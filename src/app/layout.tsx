@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import "./globals.css";
 
@@ -113,6 +114,7 @@ export default function RootLayout({
   window.performance = perf;
 })();`}
         </Script>
+        <Analytics />
       </body>
     </html>
   );
