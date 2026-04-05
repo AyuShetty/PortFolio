@@ -14,6 +14,12 @@ export default function AchievementsPage() {
   return (
     <main className="content-layout">
       <PrimaryNav />
+
+      <header className="content-hero">
+        <h1>Achievements</h1>
+        <p>Governance milestones, research output, and hackathon wins documented here.</p>
+      </header>
+
       <LinkedInEmbeds posts={LINKEDIN_POSTS} category="achievements" />
     </main>
   );

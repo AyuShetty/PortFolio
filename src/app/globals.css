@@ -9,6 +9,16 @@
 
   --font-display-family: var(--font-display), "Cormorant Garamond", serif;
   --font-body-family: var(--font-body), "Manrope", sans-serif;
+
+  /* Consistent colors for all pages */
+  --card-border: rgb(230 213 184 / 0.15);
+  --card-border-hover: rgb(230 213 184 / 0.3);
+  --card-bg: linear-gradient(135deg, rgb(26 26 26 / 0.5) 0%, rgb(31 31 31 / 0.3) 100%);
+  --card-bg-hover: linear-gradient(135deg, rgb(26 26 26 / 0.7) 0%, rgb(31 31 31 / 0.5) 100%);
+  --text-primary: var(--off-white);
+  --text-secondary: rgb(245 245 245 / 0.8);
+  --text-tertiary: rgb(245 245 245 / 0.7);
+  --text-muted: rgb(245 245 245 / 0.6);
 }
 
 * {
@@ -30,6 +40,17 @@ body {
     radial-gradient(55% 50% at 88% 80%, rgb(11 61 46 / 0.28), transparent 64%),
     linear-gradient(150deg, #141714 0%, #181a18 46%, #101211 100%);
   overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.6;
 }
 
 body.intro-scroll-lock {

@@ -14,6 +14,12 @@ export default function CertificationsPage() {
   return (
     <main className="content-layout">
       <PrimaryNav />
+
+      <header className="content-hero">
+        <h1>Certifications & Recognitions</h1>
+        <p>Academic credentials, certifications, and recognitions earned along the journey.</p>
+      </header>
+
       <LinkedInEmbeds posts={LINKEDIN_POSTS} />
     </main>
   );
