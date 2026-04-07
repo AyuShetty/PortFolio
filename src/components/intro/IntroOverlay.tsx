@@ -139,10 +139,12 @@ export function IntroOverlay() {
   }, [state]);
 
   const openExpanded = useCallback(() => {
+    console.log("Opening expanded intro");
     setState("expanded");
   }, []);
 
   const startExit = useCallback(() => {
+    console.log("Starting exit from intro");
     try {
       window.localStorage.setItem("visited", "true");
       document.documentElement.dataset.introVisited = "true";
@@ -190,27 +192,27 @@ export function IntroOverlay() {
             animate={{ borderRadius: shellRadius }}
             transition={shellSpring}
             className={cardClassName}
-            onClick={state === "collapsed" ? openExpanded : state === "expanded" ? () => setState("collapsed") : undefined}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (state === "collapsed") {
+                openExpanded();
+              } else if (state === "expanded") {
+                setState("collapsed");
+              }
+            }}
             role={state === "collapsed" || state === "expanded" ? "button" : undefined}
             aria-expanded={state !== "collapsed"}
             tabIndex={state === "collapsed" || state === "expanded" ? 0 : -1}
-            onKeyDown={
-              state === "collapsed"
-                ? (event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      openExpanded();
-                    }
-                  }
-                : state === "expanded"
-                  ? (event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        setState("collapsed");
-                      }
-                    }
-                : undefined
-            }
+            onKeyDown={(event) => {
+              if (state === "collapsed" && (event.key === "Enter" || event.key === " ")) {
+                event.preventDefault();
+                openExpanded();
+              } else if (state === "expanded" && (event.key === "Enter" || event.key === " ")) {
+                event.preventDefault();
+                setState("collapsed");
+              }
+            }}
+            style={{ pointerEvents: "auto" }}
           >
             <div className={state === "collapsed" ? "flex w-full items-center gap-3" : "flex w-full flex-col gap-6 sm:gap-7"}>
               <div className={state === "collapsed" ? "flex min-w-0 flex-1 items-center gap-3" : "flex items-start gap-4 sm:gap-5"}>
@@ -261,12 +263,20 @@ export function IntroOverlay() {
                   type="button"
                   onClick={(event) => {
                     event.stopPropagation();
+                    console.log("Plus button clicked");
+                    openExpanded();
+                  }}
+                  onTouchEnd={(event) => {
+                    event.stopPropagation();
+                    console.log("Plus button touched");
                     openExpanded();
                   }}
                   whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#1fbf5d] text-3xl leading-none text-black shadow-[0_16px_45px_rgba(31,191,93,0.35)] transition-shadow duration-200 hover:shadow-[0_18px_55px_rgba(31,191,93,0.45)]"
                   aria-label="Open introduction"
+                  style={{ pointerEvents: "auto" }}
+                  disabled={false}
                 >
                   +
                 </motion.button>
@@ -286,11 +296,18 @@ export function IntroOverlay() {
                       type="button"
                       onClick={(event) => {
                         event.stopPropagation();
+                        console.log("Visit Website clicked");
+                        startExit();
+                      }}
+                      onTouchEnd={(event) => {
+                        event.stopPropagation();
+                        console.log("Visit Website touched");
                         startExit();
                       }}
                       whileHover={{ scale: 1.04, y: -1 }}
                       whileTap={{ scale: 0.98 }}
                       className="rounded-full bg-[#0ea5e9] px-5 py-3 text-sm font-semibold text-white transition-shadow duration-200 hover:shadow-[0_12px_28px_rgba(14,165,233,0.24)]"
+                      style={{ pointerEvents: "auto" }}
                     >
                       Visit Website
                     </motion.button>
@@ -305,6 +322,7 @@ export function IntroOverlay() {
                         whileHover={{ scale: 1.06, y: -1 }}
                         whileTap={{ scale: 0.96 }}
                         className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.07] text-white/80 transition-colors duration-200 hover:bg-white/[0.12] hover:text-white"
+                        style={{ pointerEvents: "auto" }}
                       >
                         <TwitterIcon className="h-[18px] w-[18px]" />
                       </motion.a>
@@ -318,6 +336,7 @@ export function IntroOverlay() {
                         whileHover={{ scale: 1.06, y: -1 }}
                         whileTap={{ scale: 0.96 }}
                         className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.07] text-white/80 transition-colors duration-200 hover:bg-white/[0.12] hover:text-white"
+                        style={{ pointerEvents: "auto" }}
                       >
                         <GithubIcon className="h-[18px] w-[18px]" />
                       </motion.a>
@@ -331,6 +350,7 @@ export function IntroOverlay() {
                         whileHover={{ scale: 1.06, y: -1 }}
                         whileTap={{ scale: 0.96 }}
                         className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.07] text-white/80 transition-colors duration-200 hover:bg-white/[0.12] hover:text-white"
+                        style={{ pointerEvents: "auto" }}
                       >
                         <LinkedInIcon className="h-[18px] w-[18px]" />
                       </motion.a>
@@ -344,6 +364,7 @@ export function IntroOverlay() {
                         whileHover={{ scale: 1.06, y: -1 }}
                         whileTap={{ scale: 0.96 }}
                         className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.07] text-white/80 transition-colors duration-200 hover:bg-white/[0.12] hover:text-white"
+                        style={{ pointerEvents: "auto" }}
                       >
                         <InstagramIcon className="h-[18px] w-[18px]" />
                       </motion.a>
@@ -357,6 +378,7 @@ export function IntroOverlay() {
                         whileHover={{ scale: 1.06, y: -1 }}
                         whileTap={{ scale: 0.96 }}
                         className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.07] text-white/80 transition-colors duration-200 hover:bg-white/[0.12] hover:text-white"
+                        style={{ pointerEvents: "auto" }}
                       >
                         <TelegramIcon className="h-[18px] w-[18px]" />
                       </motion.a>

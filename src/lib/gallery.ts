@@ -24,7 +24,7 @@ type GalleryMeta = {
   items?: GalleryMetaItem[];
 };
 
-const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
+const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"].flatMap((ext) => [ext, ext.toUpperCase()]));
 
 async function readMetadata(folder: string): Promise<GalleryMetaItem[]> {
   const metadataPath = path.join(process.cwd(), "public", folder, "gallery.json");
@@ -50,7 +50,7 @@ export async function getGalleryImages(folder: string): Promise<GalleryImage[]> 
     const files = entries
       .filter((entry) => entry.isFile())
       .map((entry) => entry.name)
-      .filter((name) => IMAGE_EXTENSIONS.has(path.extname(name).toLowerCase()))
+      .filter((name) => IMAGE_EXTENSIONS.has(path.extname(name)))
       .sort((a, b) => a.localeCompare(b));
 
     const orderedFiles = [
@@ -63,15 +63,10 @@ export async function getGalleryImages(folder: string): Promise<GalleryImage[]> 
     for (const fileName of orderedFiles) {
       const meta = metadataMap.get(fileName);
       const cleanName = fileName.replace(/[-_]/g, " ").replace(/\.[^.]+$/, "");
-      let blurDataURL: string | undefined;
-
-      try {
-        const buffer = await fs.readFile(path.join(absolute, fileName));
-        const plaiceholder = await getPlaiceholder(buffer);
-        blurDataURL = plaiceholder.base64;
-      } catch {
-        blurDataURL = undefined;
-      }
+      
+      // Skip blur data URL generation to improve performance during development
+      // This can be re-enabled once other issues are resolved
+      let blurDataURL: string | undefined = undefined;
 
       results.push({
         src: `/${folder}/${fileName}`,

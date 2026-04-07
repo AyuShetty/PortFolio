@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
+import { ResumeDownloadButton } from "@/components/ResumeDownloadButton";
 import { SERVICES, SKILL_GROUPS, TIMELINE } from "@/components/portfolio/experience-data";
 
 export const dynamic = "force-dynamic";
@@ -18,24 +19,7 @@ export default function AboutPage() {
         <h1>About & Capabilities</h1>
         <p>System-minded product engineering with a focus on governance, education, and community tooling.</p>
         <div style={{ marginTop: "1.5rem" }}>
-          <a 
-            href="/Ayush N shetty.pdf" 
-            download 
-            style={{
-              display: "inline-block",
-              padding: "0.75rem 1.5rem",
-              backgroundColor: "#1f7a63",
-              color: "#f5f5f5",
-              borderRadius: "0.5rem",
-              textDecoration: "none",
-              fontWeight: "600",
-              transition: "background-color 0.3s ease"
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#0b3d2e")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#1f7a63")}
-          >
-            📄 Download Resume
-          </a>
+          <ResumeDownloadButton />
         </div>
       </header>
 
