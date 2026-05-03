@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Mona_Sans, Hubot_Sans } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-display",
+const monaSans = Mona_Sans({
+  variable: "--font-header",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const manrope = Manrope({
+const hubotSans = Hubot_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -62,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}
+      className={`${monaSans.variable} ${hubotSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
@@ -80,12 +80,6 @@ export default function RootLayout({
         </Script>
         <IntroOverlay />
         <div className="site-shell">{children}</div>
-        
-        {/* Progress Note */}
-        <div className="progress-badge" aria-label="Website progress note">
-          <div className="progress-badge-dot"></div>
-          <span>Website in progress • Ready in 3-4 days</span>
-        </div>
         <Script id="performance-polyfill" strategy="afterInteractive">
           {`(function () {
   if (typeof window === "undefined") return;

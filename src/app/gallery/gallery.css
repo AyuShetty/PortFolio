@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 100%);
-  color: var(--off-white);
+  background: var(--color-bg);
+  color: var(--color-text-main);
 }
 
 /* Dome Gallery Section */
@@ -13,10 +13,10 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #0a0a1e;
+  background: var(--color-bg);
   overflow: hidden;
   flex-shrink: 0;
-  border-bottom: 1px solid var(--card-border);
+  border-bottom: 1px solid rgba(210, 255, 0, 0.2);
 }
 
 .gallery-header {
@@ -26,17 +26,17 @@
   right: 0;
   z-index: 10;
   padding: 1.5rem 2rem;
-  background: linear-gradient(to bottom, rgba(10, 10, 30, 0.95), transparent);
+  background: linear-gradient(to bottom, rgba(17, 17, 18, 0.95), transparent);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(230, 213, 184, 0.05);
+  border-bottom: 1px solid rgba(210, 255, 0, 0.1);
 }
 
 .gallery-title {
   margin: 0.5rem 0 0 0;
   font-size: 1.25rem;
   font-weight: 500;
-  color: var(--off-white);
-  font-family: var(--font-display-family);
+  color: var(--color-text-main);
+  font-family: var(--font-header);
   letter-spacing: 0.03em;
 }
 
@@ -52,7 +52,7 @@
 /* Events Section */
 .events-section {
   flex: 1;
-  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 100%);
+  background: var(--color-bg);
   padding: 80px 2rem;
   z-index: 1;
 }
@@ -69,11 +69,11 @@
 }
 
 .events-header-content h2 {
-  font-family: var(--font-display-family);
+  font-family: var(--font-header);
   font-size: clamp(1.8rem, 5vw, 2.8rem);
   margin: 0 0 1rem 0;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--sand) 0%, var(--sand) 100%);
+  background: linear-gradient(135deg, #D2FF00 0%, #B8E600 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -82,7 +82,7 @@
 
 .events-header-content p {
   font-size: 1.1rem;
-  color: var(--text-tertiary);
+  color: var(--color-text-tertiary);
   margin: 0;
   max-width: 48rem;
   margin: 0 auto;
@@ -141,7 +141,7 @@
   justify-content: center;
   min-width: 80px;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(31, 122, 99, 0.15) 0%, rgba(11, 61, 46, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(212, 255, 0, 0.15) 0%, rgba(184, 230, 0, 0.1) 100%);
   border-radius: 0.75rem;
   border: 1px solid var(--card-border);
   text-align: center;
@@ -149,17 +149,17 @@
 }
 
 .event-year {
-  font-family: var(--font-display-family);
+  font-family: var(--font-header);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--forest-green);
+  color: #D2FF00;
   line-height: 1;
   letter-spacing: 0.02em;
 }
 
 .event-date {
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   margin-top: 0.5rem;
   font-weight: 500;
 }
@@ -171,10 +171,10 @@
 }
 
 .event-title {
-  font-family: var(--font-display-family);
+  font-family: var(--font-header);
   font-size: 1.5rem;
   margin: 0;
-  color: var(--sand);
+  color: var(--color-text-main);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -184,7 +184,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   font-size: 0.9rem;
-  color: var(--text-tertiary);
+  color: var(--color-text-tertiary);
 }
 
 .event-location,
@@ -197,7 +197,7 @@
 .event-summary {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.6;
 }
@@ -209,7 +209,7 @@
 .event-highlights h4 {
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--forest-green);
+  color: #D2FF00;
   margin: 0 0 0.75rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -228,7 +228,7 @@
   padding-left: 1.5rem;
   position: relative;
   font-size: 0.9rem;
-  color: var(--text-tertiary);
+  color: var(--color-text-tertiary);
   line-height: 1.5;
 }
 
@@ -236,7 +236,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--forest-green);
+  color: #D2FF00;
   font-weight: 600;
 }
 
@@ -250,20 +250,20 @@
 .tag {
   display: inline-block;
   padding: 0.4rem 0.8rem;
-  background: rgba(31, 122, 99, 0.2);
-  color: var(--sand);
+  background: rgba(210, 255, 0, 0.15);
+  color: #D2FF00;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(210, 255, 0, 0.2);
   transition: all 200ms ease;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .tag:hover {
-  background: rgba(31, 122, 99, 0.3);
-  border-color: var(--card-border-hover);
+  background: rgba(210, 255, 0, 0.25);
+  border-color: rgba(210, 255, 0, 0.4);
 }
 
 /* POAPs Section */
@@ -276,7 +276,7 @@
 .event-poaps h4 {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #c9b24e;
+  color: #D2FF00;
   margin: 0 0 1rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -294,16 +294,16 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(201, 178, 78, 0.1) 0%, rgba(201, 178, 78, 0.05) 100%);
-  border: 1px solid rgba(201, 178, 78, 0.2);
+  background: linear-gradient(135deg, rgba(210, 255, 0, 0.1) 0%, rgba(210, 255, 0, 0.05) 100%);
+  border: 1px solid rgba(210, 255, 0, 0.2);
   border-radius: 0.75rem;
   text-align: center;
   transition: all 200ms ease;
 }
 
 .poap-item:hover {
-  background: linear-gradient(135deg, rgba(201, 178, 78, 0.15) 0%, rgba(201, 178, 78, 0.1) 100%);
-  border-color: rgba(201, 178, 78, 0.4);
+  background: linear-gradient(135deg, rgba(210, 255, 0, 0.15) 0%, rgba(210, 255, 0, 0.1) 100%);
+  border-color: rgba(210, 255, 0, 0.4);
   transform: translateY(-2px);
 }
 
@@ -312,7 +312,7 @@
   height: 80px;
   border-radius: 0.75rem;
   object-fit: cover;
-  border: 1px solid rgba(201, 178, 78, 0.3);
+  border: 1px solid rgba(210, 255, 0, 0.3);
 }
 
 .poap-info {
@@ -324,13 +324,13 @@
 .poap-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #c9b24e;
+  color: #D2FF00;
   margin: 0;
 }
 
 .poap-summary {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   margin: 0;
   line-height: 1.3;
 }

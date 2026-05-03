@@ -36,7 +36,7 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 			const blurLayer = document.querySelector(".blur-layer");
 			if (blurLayer) {
 				(blurLayer as HTMLElement).style.backdropFilter = `blur(${blur}px)`;
-				(blurLayer as HTMLElement).style.background = `rgba(10, 10, 30, ${opacity})`;
+				(blurLayer as HTMLElement).style.background = `rgba(26, 38, 25, ${opacity})`;
 			}
 
 			const introText = document.querySelector(".intro-text");

@@ -183,7 +183,7 @@ export default function DomeGallery({
   minRadius = 300,
   maxRadius = Infinity,
   padFactor = 0.25,
-  overlayBlurColor = "#060010",
+  overlayBlurColor = "#111112",
   maxVerticalRotationDeg = 0,
   dragSensitivity = 20,
   enlargeTransitionMs = 300,

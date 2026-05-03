@@ -8,7 +8,7 @@ function FloatingOrb() {
 		<Float speed={1} rotationIntensity={0.35} floatIntensity={0.7}>
 			<mesh>
 				<icosahedronGeometry args={[2.25, 1]} />
-				<meshStandardMaterial color="#1f7a63" roughness={0.35} metalness={0.18} />
+				<meshStandardMaterial color="#D2FF00" roughness={0.35} metalness={0.18} />
 			</mesh>
 		</Float>
 	);
@@ -17,10 +17,10 @@ function FloatingOrb() {
 export function ExperienceCanvas() {
 	return (
 		<Canvas className="experience-canvas" dpr={[1, 1.5]} camera={{ position: [0, 0, 6], fov: 45 }}>
-			<color attach="background" args={["#101211"]} />
+			<color attach="background" args={["#111112"]} />
 			<ambientLight intensity={0.55} />
-			<directionalLight position={[3, 2, 4]} intensity={1} color="#e6d5b8" />
-			<pointLight position={[-3, -2, -4]} intensity={0.65} color="#1f7a63" />
+			<directionalLight position={[3, 2, 4]} intensity={1} color="#D2FF00" />
+			<pointLight position={[-3, -2, -4]} intensity={0.65} color="#B8E600" />
 			<FloatingOrb />
 		</Canvas>
 	);

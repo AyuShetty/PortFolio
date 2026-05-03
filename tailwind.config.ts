@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "deep-green": "#0b3d2e",
-        "forest-green": "#1f7a63",
-        sand: "#e6d5b8",
-        "off-white": "#f5f5f5",
-        charcoal: "#1a1a1a",
+        "neon-yellow": "#D2FF00",
+        "deep-charcoal": "#111112",
+        "off-white": "#F4F3F1",
+        "muted-sage": "#7F8177",
+        "dark-olive": "#2D3126",
       },
       fontFamily: {
-        display: ["var(--font-display)", "Cormorant Garamond", "serif"],
-        body: ["var(--font-body)", "Manrope", "sans-serif"],
+        header: ["'Mona Sans'", "sans-serif"],
+        body: ["'Hubot Sans'", "sans-serif"],
       },
     },
   },
