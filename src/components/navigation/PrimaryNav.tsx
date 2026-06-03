@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -42,6 +43,10 @@ export function PrimaryNav({ className }: PrimaryNavProps) {
           </Link>
         );
       })}
+      
+      <div className="ml-2 flex items-center">
+        <ThemeToggle />
+      </div>
     </nav>
   );
 }

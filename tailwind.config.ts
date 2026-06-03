@@ -6,9 +6,21 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class", // Enable class-based dark mode
   theme: {
     extend: {
       colors: {
+        // Semantic, adaptive theme variables
+        background: "var(--color-bg)",
+        primary: "var(--color-text-main)",
+        muted: "var(--color-text-muted)",
+        accent: "var(--color-accent)",
+        surface: "var(--color-surface)",
+        card: "var(--card-bg)",
+        "card-hover": "var(--card-bg-hover)",
+        "card-border": "var(--card-border)",
+        
+        // Static references (if needed)
         "neon-yellow": "#D2FF00",
         "deep-charcoal": "#111112",
         "off-white": "#F4F3F1",
@@ -16,8 +28,8 @@ const config: Config = {
         "dark-olive": "#2D3126",
       },
       fontFamily: {
-        header: ["'Mona Sans'", "sans-serif"],
-        body: ["'Hubot Sans'", "sans-serif"],
+        header: ["var(--font-header)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
       },
     },
   },

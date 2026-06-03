@@ -3,6 +3,8 @@ import { Mona_Sans, Hubot_Sans } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { IntroOverlay } from "@/components/intro/IntroOverlay";
+import BackgroundMotion from "@/components/intro/BackgroundMotion";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const monaSans = Mona_Sans({
@@ -65,8 +67,10 @@ export default function RootLayout({
       className={`${monaSans.variable} ${hubotSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        <Script id="intro-visit-flag" strategy="beforeInteractive">
+      <body className="min-h-full flex flex-col bg-background text-primary transition-colors duration-500">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <BackgroundMotion />
+          <Script id="intro-visit-flag" strategy="beforeInteractive">
           {`(function () {
   try {
     var visited = window.localStorage.getItem("visited") === "true";
@@ -79,7 +83,8 @@ export default function RootLayout({
 })();`}
         </Script>
         <IntroOverlay />
-        <div className="site-shell">{children}</div>
+        <div className="site-shell relative z-10 max-w-[100vw] overflow-x-hidden">{children}</div>
+        </ThemeProvider>
         <Script id="performance-polyfill" strategy="afterInteractive">
           {`(function () {
   if (typeof window === "undefined") return;
