@@ -4,6 +4,17 @@ const GITHUB_USERNAME = "AyuShetty";
 // Update these with your actual featured repository names
 const FEATURED_REPOS = ["EIPsInsight", "eth-ed"];
 
+interface GitHubApiRepo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  language: string | null;
+  fork: boolean;
+  updated_at: string;
+  watchers_count: number;
+}
+
 export async function fetchGitHubRepos(): Promise<GitHubRepoEntry[]> {
   try {
     const controller = new AbortController();
@@ -27,17 +38,17 @@ export async function fetchGitHubRepos(): Promise<GitHubRepoEntry[]> {
       return [];
     }
 
-    const repos = await response.json();
+    const repos = await response.json() as GitHubApiRepo[];
 
     // Transform GitHub API response to our format
     const transformedRepos: GitHubRepoEntry[] = repos
-      .filter((repo: any) => !repo.fork) // Filter out forks
-      .map((repo: any) => ({
+      .filter((repo) => !repo.fork) // Filter out forks
+      .map((repo) => ({
         name: repo.name,
-        description: repo.description,
+        description: repo.description ?? "",
         url: repo.html_url,
         stars: repo.stargazers_count,
-        language: repo.language,
+        language: repo.language ?? "",
         featured: FEATURED_REPOS.includes(repo.name),
         lastUpdated: new Date(repo.updated_at).toLocaleDateString("en-US", {
           month: "short",

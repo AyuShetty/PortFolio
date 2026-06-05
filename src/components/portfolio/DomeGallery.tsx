@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, type CSSProperties } from "react";
 import { useGesture } from "@use-gesture/react";
 
 export type DomeGalleryImage = {
@@ -183,7 +183,7 @@ export default function DomeGallery({
   minRadius = 300,
   maxRadius = Infinity,
   padFactor = 0.25,
-  overlayBlurColor = "#111112",
+  overlayBlurColor = "var(--color-bg)",
   maxVerticalRotationDeg = 0,
   dragSensitivity = 20,
   enlargeTransitionMs = 300,
@@ -204,7 +204,11 @@ export default function DomeGallery({
   const focusedElRef = useRef<HTMLDivElement | null>(null);
   const originalTilePositionRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
 
-  const rotationRef = useRef({ x: 0, y: 0 });
+  const verticalLimit = Math.max(0, maxVerticalRotationDeg);
+  const rotationRef = useRef({
+    x: verticalLimit === 0 ? 0 : -Math.min(10, verticalLimit * 0.6),
+    y: -18,
+  });
   const startRotRef = useRef({ x: 0, y: 0 });
   const startPosRef = useRef<{ x: number; y: number } | null>(null);
   const draggingRef = useRef(false);
@@ -236,16 +240,7 @@ export default function DomeGallery({
 
   const items = useMemo(() => buildItems(normalizedImages, segments), [normalizedImages, segments]);
 
-  const [dragging, setDragging] = useState(false);
-  const verticalLimit = Math.max(0, maxVerticalRotationDeg);
-  const [rotation, setRotation] = useState(() => ({
-    x: verticalLimit === 0 ? 0 : -Math.min(10, verticalLimit * 0.6),
-    y: -18,
-  }));
 
-  useEffect(() => {
-    rotationRef.current = rotation;
-  }, [rotation]);
 
   const applyTransform = useCallback((xDeg: number, yDeg: number) => {
     const sphere = sphereRef.current;
@@ -266,7 +261,6 @@ export default function DomeGallery({
       const height = Math.max(1, contentRect.height);
       const minDim = Math.min(width, height);
       const maxDim = Math.max(width, height);
-      const aspect = width / height;
 
       let basis: number;
       switch (fitBasis) {
@@ -440,7 +434,6 @@ export default function DomeGallery({
         stopInertia();
         const dragEvent = event as PointerEvent;
         draggingRef.current = true;
-        setDragging(true);
         movedRef.current = false;
         startRotRef.current = { ...rotationRef.current };
         startPosRef.current = { x: dragEvent.clientX, y: dragEvent.clientY };
@@ -462,8 +455,7 @@ export default function DomeGallery({
         }
         if (last) {
           draggingRef.current = false;
-          setDragging(false);
-          let [velocityMagnitudeX, velocityMagnitudeY] = velocity;
+          const [velocityMagnitudeX, velocityMagnitudeY] = velocity;
           const [directionX, directionY] = direction;
           let vx = velocityMagnitudeX * directionX;
           let vy = velocityMagnitudeY * directionY;

@@ -1,0 +1,633 @@
+/* RESTRUCTURED GLOBALS.CSS – Dual-Nature Architecture */
+@import "tailwindcss";
+
+:root {
+  /* ============================================
+     CORE PALETTE (Unchanged)
+     ============================================ */
+  --color-primary: #D2FF00;    /* Lando Neon Yellow – MICRO-INTERACTIONS ONLY */
+  --color-bg-tech: #111112;    /* Deep Charcoal (Tech Mode) */
+  --color-bg-creative: #F4F3F1; /* Slate Cream (Creative Mode) */
+  --color-text-light: #F4F3F1; /* Off-White */
+  --color-text-dark: #111112;  /* Deep Charcoal */
+  --color-neutral-sage: #7F8177;     /* Muted Sage */
+  --color-neutral-olive: #2D3126;    /* Dark Olive */
+
+  /* ============================================
+     FONTS (Unchanged)
+     ============================================ */
+  --font-header: 'Mona Sans', sans-serif;
+  --font-body: 'Hubot Sans', sans-serif;
+
+  /* ============================================
+     TECH MODE: BORDERS (Subtle, Structural)
+     ============================================ */
+  --border-tech-subtle: rgba(127, 129, 119, 0.12);   /* Sage @ 12% – passive */
+  --border-tech-active: rgba(127, 129, 119, 0.30);   /* Sage @ 30% – hover/focus */
+  --border-tech-highlight: rgba(127, 129, 119, 0.40); /* Sage @ 40% – active */
+
+  /* ============================================
+     TECH MODE: BACKGROUNDS (Cards, Panels)
+     ============================================ */
+  --bg-tech-card: rgba(45, 49, 38, 0.50);       /* Dark Olive @ 50% */
+  --bg-tech-card-hover: rgba(45, 49, 38, 0.65); /* Dark Olive @ 65% */
+  --bg-tech-panel: rgba(45, 49, 38, 0.35);      /* Dark Olive @ 35% – lighter panels */
+
+  /* ============================================
+     TECH MODE: SHADOWS (Neutral, No Glow)
+     ============================================ */
+  --shadow-tech-subtle: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-tech-lift: 0 8px 24px rgba(0, 0, 0, 0.20);
+  --shadow-tech-floating: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+  /* ============================================
+     TECH MODE: TEXT (High Contrast, Clear Hierarchy)
+     ============================================ */
+  --text-tech-primary: #F4F3F1;          /* Headers, strong text @ 100% */
+  --text-tech-secondary: rgb(244 243 241 / 0.85); /* Body text @ 85% */
+  --text-tech-tertiary: rgb(244 243 241 / 0.65);  /* Supplementary text @ 65% */
+  --text-tech-muted: rgb(127 129 119 / 0.75);     /* Meta, helpers @ 75% on sage */
+
+  /* ============================================
+     CREATIVE MODE: BORDERS (Minimal, Elegant)
+     ============================================ */
+  --border-creative-subtle: rgba(45, 49, 38, 0.08);   /* Olive @ 8% – very light */
+  --border-creative-active: rgba(45, 49, 38, 0.16);   /* Olive @ 16% – hover */
+  --border-creative-highlight: rgba(45, 49, 38, 0.24); /* Olive @ 24% – active */
+
+  /* ============================================
+     CREATIVE MODE: BACKGROUNDS (Cards, Panels)
+     ============================================ */
+  --bg-creative-card: rgba(255, 255, 255, 0.60);      /* White @ 60% */
+  --bg-creative-card-hover: rgba(255, 255, 255, 0.75); /* White @ 75% */
+  --bg-creative-panel: rgba(255, 255, 255, 0.40);     /* White @ 40% – subtle bg */
+
+  /* ============================================
+     CREATIVE MODE: SHADOWS (Soft, Gentle)
+     ============================================ */
+  --shadow-creative-subtle: 0 2px 8px rgba(45, 45, 45, 0.08);
+  --shadow-creative-lift: 0 8px 24px rgba(45, 45, 45, 0.12);
+  --shadow-creative-floating: 0 12px 40px rgba(45, 45, 45, 0.16);
+
+  /* ============================================
+     CREATIVE MODE: TEXT (Warm, High Contrast on Light)
+     ============================================ */
+  --text-creative-primary: #111112;          /* Headers @ 100% */
+  --text-creative-secondary: rgb(17 17 18 / 0.75); /* Body text @ 75% */
+  --text-creative-tertiary: rgb(17 17 18 / 0.60);  /* Supplementary @ 60% */
+  --text-creative-muted: rgb(127 129 119 / 0.65);  /* Meta on light @ 65% */
+
+  /* ============================================
+     ACCENT (Neon Yellow – Restricted Use)
+     ============================================ */
+  --accent-primary: #D2FF00;           /* Full neon (hover, focus, critical) */
+  --accent-glow: rgba(210, 255, 0, 0.15); /* Subtle glow (20% opacity) */
+  --accent-border: rgba(210, 255, 0, 0.40); /* Border accent (40% opacity) */
+
+  /* ============================================
+     UTILITY: Focus & Interaction
+     ============================================ */
+  --focus-outline: 2px solid #D2FF00;
+  --focus-shadow: 0 0 12px rgba(210, 255, 0, 0.2);
+
+  /* ============================================
+     CONSISTENT STRUCTURE (Legacy Compatibility)
+     ============================================ */
+  --color-bg: var(--color-bg-tech);           /* Default to tech */
+  --color-text-main: var(--text-tech-primary);
+  --color-text-muted: var(--text-tech-muted);
+  --color-surface: var(--color-neutral-olive);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text-tech-primary);
+  font-family: var(--font-body);
+  background: var(--color-bg-tech);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-tech-primary);
+}
+
+p {
+  line-height: 1.6;
+  color: var(--text-tech-secondary);
+}
+
+/* ============================================
+   DUAL-MODE SECTION BASE CLASSES
+   ============================================ */
+
+.section-tech {
+  background: var(--color-bg-tech);
+  color: var(--text-tech-primary);
+}
+
+.section-tech h1,
+.section-tech h2,
+.section-tech h3,
+.section-tech h4,
+.section-tech h5,
+.section-tech h6 {
+  color: var(--text-tech-primary);
+}
+
+.section-tech p {
+  color: var(--text-tech-secondary);
+}
+
+.section-tech .text-muted {
+  color: var(--text-tech-muted);
+}
+
+.section-creative {
+  background: var(--color-bg-creative);
+  color: var(--text-creative-primary);
+}
+
+.section-creative h1,
+.section-creative h2,
+.section-creative h3,
+.section-creative h4,
+.section-creative h5,
+.section-creative h6 {
+  color: var(--text-creative-primary);
+}
+
+.section-creative p {
+  color: var(--text-creative-secondary);
+}
+
+.section-creative .text-muted {
+  color: var(--text-creative-muted);
+}
+
+/* ============================================
+   CARDS: DUAL-MODE IMPLEMENTATIONS
+   ============================================ */
+
+.card-tech {
+  background: var(--bg-tech-card);
+  border: 1px solid var(--border-tech-subtle);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-tech-subtle);
+  transition: all 200ms ease;
+  position: relative;
+}
+
+.card-tech:hover {
+  background: var(--bg-tech-card-hover);
+  border-color: var(--border-tech-active);
+  box-shadow: var(--shadow-tech-lift);
+}
+
+/* MICRO-ACCENT: Neon top-left corner on hover (ONLY) */
+.card-tech:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-primary);
+  border-radius: 1px;
+  transition: width 200ms ease;
+}
+
+.card-creative {
+  background: var(--bg-creative-card);
+  border: 1px solid var(--border-creative-subtle);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-creative-subtle);
+  transition: all 200ms ease;
+}
+
+.card-creative:hover {
+  background: var(--bg-creative-card-hover);
+  border-color: var(--border-creative-active);
+  box-shadow: var(--shadow-creative-lift);
+}
+
+/* ============================================
+   BUTTONS: NEW HIERARCHY
+   ============================================ */
+
+/* PRIMARY: Glass Pill (Dark or Light – Use Anywhere) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font-family: var(--font-header);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tech-primary);
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* SECONDARY: Outline with Neon Hover (Tech Sections) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border-tech-active);
+  border-radius: 999px;
+  font-family: var(--font-header);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tech-secondary);
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* TERTIARY: Soft Outline (Creative Sections) */
+.btn-tertiary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(17, 17, 18, 0.04);
+  border: 1px solid var(--border-creative-subtle);
+  border-radius: 999px;
+  font-family: var(--font-header);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-creative-primary);
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-decoration: none;
+}
+
+.btn-tertiary:hover {
+  background: rgba(17, 17, 18, 0.08);
+  border-color: var(--border-creative-active);
+}
+
+.btn-tertiary:active {
+  transform: scale(0.98);
+}
+
+/* ACCENT: Neon Border (Ultra-Rare, Hero/Alert Only) */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid var(--accent-primary);
+  border-radius: 999px;
+  font-family: var(--font-header);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-decoration: none;
+}
+
+.btn-accent:hover {
+  background: var(--accent-primary);
+  color: var(--color-bg-tech);
+  box-shadow: 0 8px 24px rgba(210, 255, 0, 0.2);
+}
+
+.btn-accent:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   FORM INPUTS (Dual Mode)
+   ============================================ */
+
+.form-input-tech {
+  background: rgba(45, 49, 38, 0.3);
+  border: 1px solid var(--border-tech-subtle);
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  color: var(--text-tech-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all 200ms ease;
+}
+
+.form-input-tech:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.form-input-creative {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border-creative-subtle);
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  color: var(--text-creative-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all 200ms ease;
+}
+
+.form-input-creative:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ============================================
+   TEXT UTILITIES (Support Dual Hierarchy)
+   ============================================ */
+
+.text-primary { color: var(--text-tech-primary); }
+.text-secondary { color: var(--text-tech-secondary); }
+.text-tertiary { color: var(--text-tech-tertiary); }
+.text-muted { color: var(--text-tech-muted); }
+.text-accent { color: var(--accent-primary); }
+
+.section-creative .text-primary { color: var(--text-creative-primary); }
+.section-creative .text-secondary { color: var(--text-creative-secondary); }
+.section-creative .text-tertiary { color: var(--text-creative-tertiary); }
+.section-creative .text-muted { color: var(--text-creative-muted); }
+
+/* ============================================
+   LEGACY COMPATIBILITY (Keep Existing Layout Structure)
+   ============================================ */
+
+body.intro-scroll-lock {
+  overflow: hidden;
+}
+
+.site-shell {
+  position: relative;
+  min-height: 100vh;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  clip-path: none;
+  will-change: auto;
+}
+
+html[data-intro-state="transitioning"] .site-shell,
+html[data-intro-state="entered"] .site-shell {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+  clip-path: circle(150% at 50% 50%);
+}
+
+/* HERO & MAIN CONTENT (Keep existing) */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  --hero-offset: clamp(4rem, 10vh, 7rem);
+}
+
+.portfolio-layout {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: calc(var(--hero-offset) + 1rem) 0 0;
+}
+
+.hero .hero-content {
+  height: 100%;
+  justify-content: center;
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-header);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  color: var(--text-tech-primary);
+}
+
+.hero-subtitle {
+  margin-top: 1.25rem;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--text-tech-secondary);
+}
+
+/* ============================================
+   SECTION SCAFFOLDING (Keep Existing)
+   ============================================ */
+
+.content-section {
+  padding-top: 80px;
+  margin-bottom: clamp(4rem, 12vh, 8rem);
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(6px);
+  transition: opacity 700ms ease, transform 700ms ease, filter 700ms ease;
+  will-change: opacity, transform, filter;
+  scroll-margin-top: 96px;
+}
+
+.content-section[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-section {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+.section-title {
+  font-family: var(--font-header);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.section-intro {
+  max-width: 38rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ============================================
+   GRIDS (Responsive, Flexible)
+   ============================================ */
+
+.project-grid,
+.highlight-grid,
+.stat-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .highlight-grid,
+  .stat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   NAVIGATION (Updated, Accessible)
+   ============================================ */
+
+.primary-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.primary-nav a {
+  border: 1px solid var(--border-tech-subtle);
+  border-radius: 999px;
+  padding: 0.45rem 0.78rem;
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tech-secondary);
+  background: transparent;
+  transition: all 200ms ease;
+}
+
+.primary-nav a:hover {
+  color: var(--text-tech-primary);
+  border-color: var(--border-tech-active);
+}
+
+.primary-nav a[data-active="true"] {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+/* ============================================
+   FOOTER & MISC
+   ============================================ */
+
+.page-footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border-tech-subtle);
+  color: var(--text-tech-muted);
+}
+
+a {
+  color: var(--text-tech-secondary);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+a:hover {
+  color: var(--accent-primary);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+*:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: var(--focus-outline);
+  box-shadow: var(--focus-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

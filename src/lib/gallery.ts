@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getPlaiceholder } from "plaiceholder";
+
 
 export type GalleryImage = {
   src: string;
@@ -66,7 +66,7 @@ export async function getGalleryImages(folder: string): Promise<GalleryImage[]> 
       
       // Skip blur data URL generation to improve performance during development
       // This can be re-enabled once other issues are resolved
-      let blurDataURL: string | undefined = undefined;
+      const blurDataURL: string | undefined = undefined;
 
       results.push({
         src: `/${folder}/${fileName}`,
