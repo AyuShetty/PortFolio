@@ -9,16 +9,25 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
     return (
-      <div className="w-10 h-10 rounded-full border border-card-border bg-card/50 flex items-center justify-center opacity-50">
-        <div className="w-4 h-4 rounded-full bg-muted animate-pulse" />
-      </div>
+      <div
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: "50%",
+          border: "1px solid var(--card-border)",
+          background: "var(--card-bg)",
+          opacity: 0.5,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      />
     );
   }
 
@@ -27,12 +36,33 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative flex items-center justify-center w-10 h-10 rounded-full 
-                 border border-card-border bg-background focus:outline-none focus:ring-2 
-                 focus:ring-accent transition-colors duration-300 hover:bg-card z-50 overflow-hidden"
-      aria-label="Toggle Dark Mode"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 40,
+        height: 40,
+        borderRadius: "50%",
+        border: "1px solid var(--card-border)",
+        background: "var(--color-bg)",
+        color: "var(--color-text-main)",
+        cursor: "pointer",
+        transition: "background 300ms ease, border-color 300ms ease",
+        zIndex: 50,
+        overflow: "hidden",
+        outline: "none",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.background = "var(--nav-bg-hover)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.background = "var(--color-bg)";
+      }}
     >
-      <div className="relative w-5 h-5 flex items-center justify-center text-primary">
+      <div style={{ position: "relative", width: 20, height: 20, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {/* Sun icon — visible in light mode */}
         <motion.div
           initial={false}
           animate={{
@@ -41,11 +71,12 @@ export function ThemeToggle() {
             rotate: isDark ? -90 : 0,
           }}
           transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-          className="absolute inset-0 flex items-center justify-center"
+          style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
         >
-          <Sun className="w-5 h-5 text-primary" strokeWidth={1.5} />
+          <Sun style={{ width: 20, height: 20, color: "var(--color-text-main)" }} strokeWidth={1.5} />
         </motion.div>
 
+        {/* Moon icon — visible in dark mode */}
         <motion.div
           initial={false}
           animate={{
@@ -54,9 +85,9 @@ export function ThemeToggle() {
             rotate: isDark ? 0 : 90,
           }}
           transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-          className="absolute inset-0 flex items-center justify-center"
+          style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
         >
-          <Moon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+          <Moon style={{ width: 16, height: 16, color: "var(--color-accent)" }} strokeWidth={1.5} />
         </motion.div>
       </div>
     </button>

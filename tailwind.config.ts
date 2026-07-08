@@ -27,6 +27,10 @@ const config: Config = {
         "muted-sage": "#7F8177",
         "dark-olive": "#2D3126",
       },
+      boxShadow: {
+        card: "var(--card-shadow)",
+        "card-hover": "var(--card-shadow-hover)",
+      },
       fontFamily: {
         header: ["var(--font-header)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],

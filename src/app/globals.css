@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   /* LIGHT MODE (Editorial / Off Track aesthetic) */
@@ -13,6 +14,20 @@
   --card-bg-hover: #F9F9F8;
   --card-border: rgba(17, 17, 18, 0.1);       /* Light subtle line */
   --card-border-hover: rgba(17, 17, 18, 0.3); /* Stronger dark line */
+  --card-shadow: 0 4px 20px -2px rgba(17, 17, 18, 0.04), 0 2px 8px -1px rgba(17, 17, 18, 0.02);
+  --card-shadow-hover: 0 20px 40px -4px rgba(17, 17, 18, 0.08), 0 8px 16px -2px rgba(17, 17, 18, 0.04);
+  --card-blur: none;
+
+  /* Nav & Buttons */
+  --nav-bg: transparent;
+  --nav-bg-hover: rgba(17, 17, 18, 0.05);
+  --nav-bg-active: rgba(17, 17, 18, 0.08);
+  --btn-bg: #111112;
+  --btn-text: #F4F3F1;
+  --btn-border: #111112;
+  --btn-bg-hover: #F4F3F1;
+  --btn-text-hover: #111112;
+  --btn-border-hover: #111112;
 
   /* Typography */
   --font-header: 'Mona Sans', sans-serif;
@@ -32,6 +47,20 @@
   --card-bg-hover: linear-gradient(135deg, rgba(45, 49, 38, 0.95) 0%, rgba(45, 49, 38, 1) 100%);
   --card-border: rgba(210, 255, 0, 0.2);
   --card-border-hover: rgba(210, 255, 0, 0.4);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 20px 40px rgba(210, 255, 0, 0.2);
+  --card-blur: blur(4px);
+
+  /* Nav & Buttons */
+  --nav-bg: var(--card-bg);
+  --nav-bg-hover: var(--card-bg-hover);
+  --nav-bg-active: var(--card-bg-hover);
+  --btn-bg: var(--color-accent);
+  --btn-text: #111112;
+  --btn-border: var(--color-accent);
+  --btn-bg-hover: #111112;
+  --btn-text-hover: var(--color-accent);
+  --btn-border-hover: var(--color-accent);
 }
 
 * {
@@ -225,21 +254,23 @@ html[data-intro-state="transitioning"] .site-shell::before {
 }
 
 .action-button {
-  border: 1px solid rgb(93 126 122 / 0.25);
+  border: 1px solid var(--btn-border);
   border-radius: 999px;
   padding: 0.65rem 1.2rem;
   font-size: 0.88rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--color-text-main);
-  background: rgb(255 255 255 / 0.6);
+  color: var(--btn-text);
+  background: var(--btn-bg);
   text-decoration: none;
   cursor: pointer;
-  transition: background 220ms ease;
+  transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
 }
 
 .action-button:hover {
-  background: rgb(255 255 255 / 0.9);
+  background: var(--btn-bg-hover);
+  color: var(--btn-text-hover);
+  border-color: var(--btn-border-hover);
 }
 
 .primary-nav {
@@ -281,17 +312,17 @@ html[data-intro-state="transitioning"] .site-shell::before {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-text-main);
-  background: var(--card-bg);
+  background: var(--nav-bg);
   transition: background 200ms ease, border-color 200ms ease;
 }
 
 .primary-nav a:hover {
-  background: var(--card-bg-hover);
+  background: var(--nav-bg-hover);
   border-color: var(--card-border-hover);
 }
 
 .primary-nav a[data-active="true"] {
-  background: var(--card-bg-hover);
+  background: var(--nav-bg-active);
   border-color: var(--color-accent);
   color: var(--color-text-main);
 }
@@ -651,11 +682,11 @@ main.grid-inner {
 .stat-card,
 .skill-group-card,
 .experience-card {
-  border: 1px solid rgb(93 126 122 / 0.12);
+  border: 1px solid var(--card-border);
   border-radius: 1rem;
   padding: 1.5rem;
   background: var(--card-bg);
-  box-shadow: 0 2px 8px rgba(45, 45, 45, 0.06);
+  box-shadow: var(--card-shadow);
   transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
 
@@ -663,9 +694,9 @@ main.grid-inner {
 .highlight-card:hover,
 .skill-group-card:hover,
 .experience-card:hover {
-  background: rgb(255 255 255 / 0.8);
-  border-color: rgb(93 126 122 / 0.2);
-  box-shadow: 0 4px 12px rgba(45, 45, 45, 0.1);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .project-header,
@@ -901,20 +932,21 @@ main.grid-inner {
 
 /* Panel cards styling */
 .panel-card {
-  border: 1px solid rgba(212, 255, 0, 0.2);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(42, 58, 46, 0.8) 0%, rgba(61, 74, 56, 0.9) 100%);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
   transition: all 300ms ease;
 }
 
 .panel-card:hover {
-  background: linear-gradient(135deg, rgba(42, 58, 46, 0.95) 0%, rgba(61, 74, 56, 1) 100%);
-  border-color: rgba(212, 255, 0, 0.4);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(212, 255, 0, 0.2);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .panel-card h3 {
@@ -991,20 +1023,21 @@ main.grid-inner {
 
 /* Contribution card */
 .contribution-card {
-  border: 1px solid rgba(212, 255, 0, 0.2);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(42, 58, 46, 0.8) 0%, rgba(61, 74, 56, 0.9) 100%);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
   transition: all 300ms ease;
 }
 
 .contribution-card:hover {
-  background: linear-gradient(135deg, rgba(42, 58, 46, 0.95) 0%, rgba(61, 74, 56, 1) 100%);
-  border-color: rgba(212, 255, 0, 0.4);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(212, 255, 0, 0.2);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .contribution-header {
@@ -1073,12 +1106,13 @@ main.grid-inner {
 
 /* Repo card */
 .repo-card {
-  border: 1px solid rgb(93 126 122 / 0.12);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.7) 0%, rgb(250 248 245 / 0.6) 100%);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(45, 45, 45, 0.05);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
   transition: all 300ms ease;
   display: flex;
   flex-direction: column;
@@ -1087,10 +1121,10 @@ main.grid-inner {
 }
 
 .repo-card:hover {
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.9) 0%, rgb(250 248 245 / 0.8) 100%);
-  border-color: rgb(93 126 122 / 0.2);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(45, 45, 45, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .featured-badge {
@@ -1227,12 +1261,13 @@ main.grid-inner {
 }
 
 .experience-card {
-  border: 1px solid rgb(93 126 122 / 0.12);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   padding: 2.5rem;
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.7) 0%, rgb(250 248 245 / 0.6) 100%);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(45, 45, 45, 0.05);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
   transition: all 300ms ease;
   position: relative;
   overflow: hidden;
@@ -1245,16 +1280,16 @@ main.grid-inner {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, rgb(93 126 122) 0%, rgb(107 146 153) 100%);
+  background: var(--color-accent);
   opacity: 0;
   transition: opacity 300ms ease;
 }
 
 .experience-card:hover {
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.9) 0%, rgb(250 248 245 / 0.8) 100%);
-  border-color: rgb(93 126 122 / 0.2);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(45, 45, 45, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .experience-card:hover::before {
@@ -1315,20 +1350,21 @@ main.grid-inner {
 
 /* Generic item cards for all pages */
 .item-card {
-  border: 1px solid rgb(93 126 122 / 0.12);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.7) 0%, rgb(250 248 245 / 0.6) 100%);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(45, 45, 45, 0.05);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
   transition: all 300ms ease;
 }
 
 .item-card:hover {
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.9) 0%, rgb(250 248 245 / 0.8) 100%);
-  border-color: rgb(93 126 122 / 0.2);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(45, 45, 45, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .item-card h3 {
@@ -1466,20 +1502,21 @@ main.grid-inner {
 .linkedin-post-wrapper {
   width: 100%;
   max-width: 504px;
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.7) 0%, rgb(250 248 245 / 0.6) 100%);
-  border: 1px solid rgb(93 126 122 / 0.12);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   padding: 1.5rem;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(45, 45, 45, 0.05);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
   transition: all 300ms ease;
 }
 
 .linkedin-post-wrapper:hover {
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.9) 0%, rgb(250 248 245 / 0.8) 100%);
-  border-color: rgb(93 126 122 / 0.2);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(45, 45, 45, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .linkedin-post-wrapper iframe {

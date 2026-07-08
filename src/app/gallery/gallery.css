@@ -73,10 +73,7 @@
   font-size: clamp(1.8rem, 5vw, 2.8rem);
   margin: 0 0 1rem 0;
   font-weight: 700;
-  background: linear-gradient(135deg, #D2FF00 0%, #B8E600 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-accent);
   letter-spacing: 0.02em;
 }
 
@@ -152,7 +149,7 @@
   font-family: var(--font-header);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #D2FF00;
+  color: var(--color-accent);
   line-height: 1;
   letter-spacing: 0.02em;
 }
@@ -209,7 +206,7 @@
 .event-highlights h4 {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #D2FF00;
+  color: var(--color-accent);
   margin: 0 0 0.75rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -236,7 +233,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: #D2FF00;
+  color: var(--color-accent);
   font-weight: 600;
 }
 
@@ -250,20 +247,20 @@
 .tag {
   display: inline-block;
   padding: 0.4rem 0.8rem;
-  background: rgba(210, 255, 0, 0.15);
-  color: #D2FF00;
+  background: var(--card-bg);
+  color: var(--color-accent);
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(210, 255, 0, 0.2);
+  border: 1px solid var(--card-border);
   transition: all 200ms ease;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .tag:hover {
-  background: rgba(210, 255, 0, 0.25);
-  border-color: rgba(210, 255, 0, 0.4);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
 }
 
 /* POAPs Section */
@@ -276,7 +273,7 @@
 .event-poaps h4 {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #D2FF00;
+  color: var(--color-accent);
   margin: 0 0 1rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -294,16 +291,16 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(210, 255, 0, 0.1) 0%, rgba(210, 255, 0, 0.05) 100%);
-  border: 1px solid rgba(210, 255, 0, 0.2);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 0.75rem;
   text-align: center;
   transition: all 200ms ease;
 }
 
 .poap-item:hover {
-  background: linear-gradient(135deg, rgba(210, 255, 0, 0.15) 0%, rgba(210, 255, 0, 0.1) 100%);
-  border-color: rgba(210, 255, 0, 0.4);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
   transform: translateY(-2px);
 }
 
@@ -324,7 +321,7 @@
 .poap-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #D2FF00;
+  color: var(--color-accent);
   margin: 0;
 }
 
