@@ -236,17 +236,11 @@ export default function DomeGallery({
 
   const items = useMemo(() => buildItems(normalizedImages, segments), [normalizedImages, segments]);
 
-  const [hasMounted, setHasMounted] = useState(false);
   const verticalLimit = Math.max(0, maxVerticalRotationDeg);
   const [rotation] = useState(() => ({
     x: verticalLimit === 0 ? 0 : -Math.min(10, verticalLimit * 0.6),
     y: -18,
   }));
-  const [_dragging, setDragging] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   useEffect(() => {
     rotationRef.current = rotation;
@@ -737,8 +731,6 @@ export default function DomeGallery({
       document.body.classList.remove("dg-scroll-lock");
     };
   }, []);
-
-  if (!hasMounted) return null;
 
     return (
       <div

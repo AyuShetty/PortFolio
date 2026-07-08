@@ -33,10 +33,6 @@ export function ImageGallery({
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied">("idle");
 
   useEffect(() => {
-    setOrderedImages(images);
-  }, [images]);
-
-  useEffect(() => {
     if (activeIndex === null) return;
 
     const onKeyDown = (event: KeyboardEvent) => {

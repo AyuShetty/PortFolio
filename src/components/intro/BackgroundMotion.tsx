@@ -18,8 +18,10 @@ export default function BackgroundMotion() {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
 
-    if (prefersReducedMotion) return;
+  useEffect(() => {
+    if (!mounted || prefersReducedMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       // Offset by half the width/height of the blob to center it on the cursor
@@ -29,9 +31,9 @@ export default function BackgroundMotion() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY, prefersReducedMotion]);
+  }, [mounted, mouseX, mouseY, prefersReducedMotion]);
 
-  // Don't render until mounted to avoid hydration mismatch
+  // Render only after client hydration to avoid server/client mismatch
   if (!mounted) return null;
 
   return (
@@ -66,7 +68,8 @@ export default function BackgroundMotion() {
 
           {/* Deep Slate Secondary Glow */}
           <motion.div
-            className="absolute top-[40%] left-[60%] w-[40vw] h-[40vw] rounded-full bg-[#1E293B] blur-[100px] opacity-30"
+            className="absolute top-[40%] left-[60%] w-[40vw] h-[40vw] rounded-full blur-[100px] opacity-30 transition-colors duration-500"
+            style={{ backgroundColor: "var(--bg-blob)" }}
             animate={{
               x: ["0%", "-10%", "15%", "0%"],
               y: ["0%", "-15%", "5%", "0%"],

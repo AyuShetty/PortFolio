@@ -7,40 +7,104 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Professional roles across Web3 education, product engineering, and community support.",
+  description: "Professional experience spanning software engineering, Web3, product development, technical marketing, and leadership across industry and university organizations.",
 };
 
 export default function ExperiencePage() {
+  const professionalExperiences = EXPERIENCES.filter(e => e.category === "professional");
+  const leadershipExperiences = EXPERIENCES.filter(e => e.category === "leadership");
+
   return (
     <main className="content-layout">
       <PrimaryNav />
 
       <header className="content-hero">
         <h1>Experience</h1>
-        <p>Professional roles and internship work across Web3, product engineering, and community support.</p>
+        <p>Professional experience spanning software engineering, Web3, product development, technical marketing, and leadership across industry and university organizations.</p>
         <div style={{ marginTop: "1.5rem" }}>
           <ResumeDownloadButton />
         </div>
       </header>
 
-      <section className="panel">
+      {/* Professional Experience Section */}
+      <section className="panel" style={{ marginBottom: "4rem" }}>
         <h2>Professional Experience</h2>
         <div className="experience-grid">
-          {EXPERIENCES.map((item) => (
+          {professionalExperiences.map((item) => (
             <div key={`${item.title}-${item.role}-${item.period}`} className="experience-card">
-              <div className="experience-header">
-                <h3>{item.title}</h3>
-                <span>{item.role}</span>
-                {item.period && <span className="experience-period">{item.period}</span>}
+              <div className="experience-header-container">
+                <div className="experience-logo-placeholder">
+                  {item.icon}
+                </div>
+                <div className="experience-header-text">
+                  <div className="experience-title-row">
+                    <h3>{item.title}</h3>
+                    {item.period && <span className="experience-period">{item.period}</span>}
+                  </div>
+                  <div className="experience-role-row">
+                    <span className="experience-role">{item.role}</span>
+                    {item.location && <span className="experience-location">{item.location}</span>}
+                  </div>
+                </div>
               </div>
-              <p>{item.summary}</p>
-              <ul className="detail-list">
-                {item.memories.map((memory) => (
-                  <li key={`${item.title}-${memory.title}`}>
-                    <strong>{memory.title}</strong> - {memory.detail}
-                  </li>
+              <p className="experience-summary">{item.summary}</p>
+              {item.highlights && item.highlights.length > 0 && (
+                <ul className="detail-list">
+                  {item.highlights.map((highlight, idx) => (
+                    <li key={idx}>{highlight}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="experience-skills">
+                {item.skills.map((skill) => (
+                  <span key={skill} className="skill-badge">
+                    {skill}
+                  </span>
                 ))}
-              </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Leadership Experience Section */}
+      <section className="panel">
+        <h2>Leadership & Organizations</h2>
+        <div className="experience-grid">
+          {leadershipExperiences.map((item) => (
+            <div key={`${item.title}-${item.role}-${item.period || item.summary}`} className="experience-card">
+              <div className="experience-header-container">
+                <div className="experience-logo-placeholder">
+                  {item.icon}
+                </div>
+                <div className="experience-header-text">
+                  <div className="experience-title-row">
+                    <h3>{item.title}</h3>
+                    {item.period && <span className="experience-period">{item.period}</span>}
+                  </div>
+                  <div className="experience-role-row">
+                    <span className="experience-role">
+                      {item.role} {item.org ? `· ${item.org}` : ""}
+                    </span>
+                    {item.location && <span className="experience-location">{item.location}</span>}
+                  </div>
+                </div>
+              </div>
+              <p className="experience-summary">{item.summary}</p>
+              {item.highlights && item.highlights.length > 0 && (
+                <ul className="detail-list">
+                  {item.highlights.map((highlight, idx) => (
+                    <li key={idx}>{highlight}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="experience-skills">
+                {item.skills.map((skill) => (
+                  <span key={skill} className="skill-badge">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -48,3 +112,4 @@ export default function ExperiencePage() {
     </main>
   );
 }
+

@@ -48,10 +48,16 @@ export type MemoryEntry = {
 };
 
 export type ExperienceEntry = {
+  category: "professional" | "leadership";
   title: string;
+  org?: string;
   role: string;
   period?: string;
+  location?: string;
   summary: string;
+  highlights?: string[];
+  skills: string[];
+  icon: string;
   memories: MemoryEntry[];
 };
 
@@ -272,46 +278,223 @@ export const CONTRIBUTIONS: ContributionEntry[] = [
 ];
 
 export const EXPERIENCES: ExperienceEntry[] = [
+  // ── Professional ─────────────────────────────────────────────────────────
   {
+    category: "professional",
     title: "Avarch",
     role: "Product Engineer (Trainee)",
-    period: "Sep 2025 - Present",
+    period: "Sep 2025 – Present",
+    location: "Remote · Cary, North Carolina",
     summary:
-      "Remote role based in Cary, North Carolina, focused on Web3 education platforms and ecosystem tooling.",
-    memories: [
-      {
-        title: "Web3 education tooling",
-        detail:
-          "Skills focus: Project Engineering, Software Project Management, +7 skills.",
-        year: "2025",
-      },
+      "Building Web3 education platforms, developer tooling, automation systems, backend services, and ecosystem infrastructure. Contributing across engineering, product development, project planning, documentation, and platform architecture.",
+    skills: [
+      "Product Engineering",
+      "Software Engineering",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Python",
+      "Project Management",
+      "Web3",
+      "Git",
+      "Automation",
     ],
+    icon: "AV",
+    memories: [],
   },
   {
+    category: "professional",
     title: "Avarch",
-    role: "Marketing Executive (Internship)",
-    period: "Mar 2023 - Sep 2025",
+    role: "Marketing Executive (Intern)",
+    period: "Mar 2023 – Sep 2025",
+    location: "India · Remote",
     summary:
-      "Marketing Executive internship in India supporting brand communication and design assets.",
-    memories: [
-      {
-        title: "Design and communication work",
-        detail:
-          "Skills focus: Adobe Illustrator, Oral Communication, +8 skills.",
-        year: "2023",
-      },
+      "Product marketing, branding, content strategy, technical writing, social media management, graphic design, and community engagement for Web3 products and educational initiatives.",
+    skills: [
+      "Marketing",
+      "Branding",
+      "Adobe Illustrator",
+      "Canva",
+      "Content Strategy",
+      "Technical Writing",
+      "Social Media",
+      "Graphic Design",
     ],
+    icon: "AV",
+    memories: [],
+  },
+
+  // ── University Leadership ────────────────────────────────────────────────
+  {
+    category: "leadership",
+    title: "COPE",
+    org: "NMAM Institute of Technology",
+    role: "President",
+    period: "Jun 2024 – Jul 2025",
+    summary:
+      "Led one of NMAMIT's largest student mental health organizations, managing a team of 20+ members while planning campus-wide initiatives, awareness campaigns, workshops, and organizational strategy.",
+    highlights: [
+      "Led executive committee and volunteers",
+      "Managed operations and annual planning",
+      "Organized mental health workshops and awareness drives",
+      "Coordinated with clubs, faculty, and external organizations",
+      "Represented the organization at official events",
+      "Oversaw recruitment, onboarding, and member training",
+    ],
+    skills: [
+      "Leadership",
+      "Project Management",
+      "Team Management",
+      "Event Management",
+      "Public Speaking",
+      "Community Building",
+      "Strategic Planning",
+    ],
+    icon: "CP",
+    memories: [],
   },
   {
-    title: "DiyaGhar NGO",
-    role: "Volunteer Intern",
-    summary: "Volunteer internship supporting NGO initiatives.",
-    memories: [
-      {
-        title: "Community support",
-        detail: "Contributed as a volunteer intern for DiyaGhar NGO.",
-      },
+    category: "leadership",
+    title: "COPE",
+    org: "NMAM Institute of Technology",
+    role: "Vice President",
+    period: "Aug 2023 – Jul 2024",
+    summary:
+      "Supported organizational leadership by coordinating volunteers, planning events, managing internal operations, and helping scale outreach across campus.",
+    highlights: [
+      "Assisted executive decision making",
+      "Coordinated volunteer activities",
+      "Planned awareness initiatives",
+      "Managed logistics for events",
+      "Helped recruit and mentor new members",
     ],
+    skills: [
+      "Leadership",
+      "Coordination",
+      "Communication",
+      "Operations",
+      "Volunteer Management",
+    ],
+    icon: "CP",
+    memories: [],
+  },
+  {
+    category: "leadership",
+    title: "Developer Student Clubs (Google DSC)",
+    org: "NMAM Institute of Technology",
+    role: "Social Media Head",
+    summary:
+      "Managed the club's digital presence by creating promotional campaigns, designing technical content, increasing engagement, and marketing workshops, hackathons, and developer events.",
+    highlights: [
+      "Planned social media strategy",
+      "Designed promotional creatives",
+      "Increased engagement for technical events",
+      "Worked closely with organizing teams",
+    ],
+    skills: [
+      "Social Media Marketing",
+      "Graphic Design",
+      "Branding",
+      "Canva",
+      "Adobe Illustrator",
+      "Content Strategy",
+    ],
+    icon: "DS",
+    memories: [],
+  },
+  {
+    category: "leadership",
+    title: "CSI Student Branch",
+    org: "NMAM Institute of Technology",
+    role: "Social Media Head",
+    summary:
+      "Managed social media communication and digital branding for the Computer Society of India student chapter, promoting workshops, seminars, and technical activities.",
+    highlights: [
+      "Designed event campaigns",
+      "Managed online communications",
+      "Created promotional graphics",
+      "Increased visibility of technical events",
+    ],
+    skills: [
+      "Marketing",
+      "Branding",
+      "Graphic Design",
+      "Content Creation",
+      "Communication",
+    ],
+    icon: "CS",
+    memories: [],
+  },
+  {
+    category: "leadership",
+    title: "Club Rachana",
+    org: "NMAM Institute of Technology",
+    role: "Publicity Head",
+    summary:
+      "Led publicity and promotional efforts for cultural and student events by coordinating marketing campaigns, designing creatives, and managing event visibility.",
+    highlights: [
+      "Planned publicity campaigns",
+      "Coordinated promotional activities",
+      "Managed creative assets",
+      "Worked with organizing committee",
+    ],
+    skills: [
+      "Leadership",
+      "Marketing",
+      "Graphic Design",
+      "Branding",
+      "Communication",
+    ],
+    icon: "RC",
+    memories: [],
+  },
+  {
+    category: "leadership",
+    title: "Vista",
+    org: "NMAM Institute of Technology",
+    role: "Publicity Head",
+    summary:
+      "Directed promotional campaigns for campus initiatives, ensuring effective communication, branding, and student engagement.",
+    highlights: [
+      "Managed publicity strategy",
+      "Designed promotional materials",
+      "Coordinated event marketing",
+      "Increased student participation",
+    ],
+    skills: [
+      "Campaign Management",
+      "Marketing",
+      "Design",
+      "Leadership",
+      "Communication",
+    ],
+    icon: "VI",
+    memories: [],
+  },
+  {
+    category: "leadership",
+    title: "Incridea",
+    org: "NMAM Institute of Technology",
+    role: "Publicity Member",
+    period: "2024",
+    summary:
+      "Contributed to the publicity team for NMAMIT's flagship technical festival by supporting event promotions, outreach campaigns, creative design, and marketing initiatives.",
+    highlights: [
+      "Assisted publicity campaigns",
+      "Supported technical festival promotions",
+      "Worked with publicity and organizing teams",
+      "Helped execute marketing activities",
+    ],
+    skills: [
+      "Marketing",
+      "Teamwork",
+      "Communication",
+      "Design",
+      "Event Promotion",
+    ],
+    icon: "IN",
+    memories: [],
   },
 ];
 

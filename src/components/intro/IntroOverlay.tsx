@@ -95,6 +95,7 @@ const textItemVariants = {
 };
 
 export function IntroOverlay() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [state, setState] = useState<OverlayState>("collapsed");
   const [exitTarget, setExitTarget] = useState<ExitTarget>(null);
   const [shouldFadeOut, setShouldFadeOut] = useState(false);
@@ -111,6 +112,7 @@ export function IntroOverlay() {
       document.documentElement.dataset.introVisited = "false";
       document.documentElement.dataset.introState = "intro";
     }
+    setHasMounted(true);
   }, []);
 
   const isVisible = state !== "hidden";
@@ -158,26 +160,43 @@ export function IntroOverlay() {
     setState("closing");
   }, []);
 
+  // Don't render anything until client has hydrated and read localStorage.
+  // This ensures server and first client render both produce nothing,
+  // eliminating any hydration mismatch.
+  if (!hasMounted) return null;
   const shellRadius = state === "collapsed" ? 9999 : state === "expanded" ? 32 : 0;
 
   const cardClassName =
     state === "collapsed"
-      ? "relative flex h-20 w-full max-w-[32rem] cursor-pointer items-center gap-4 overflow-hidden rounded-full border border-white/10 bg-black/95 px-3 py-2 shadow-[0_30px_120px_rgba(0,0,0,0.65)]"
+      ? "relative flex h-20 w-full max-w-[32rem] cursor-pointer items-center gap-4 overflow-hidden rounded-full px-3 py-2 transition-colors duration-500"
       : state === "expanded"
-        ? "relative w-full max-w-2xl cursor-pointer overflow-hidden rounded-[2rem] border border-white/10 bg-black/95 px-6 py-6 shadow-[0_40px_150px_rgba(0,0,0,0.72)] sm:px-8 sm:py-8 md:px-10 md:py-10"
-        : "relative flex h-[100dvh] w-full max-w-none overflow-hidden rounded-none border border-white/10 bg-black/95 px-6 py-6 shadow-none sm:px-10 sm:py-10";
+        ? "relative w-full max-w-2xl cursor-pointer overflow-hidden rounded-[2rem] px-6 py-6 transition-colors duration-500 sm:px-8 sm:py-8 md:px-10 md:py-10"
+        : "relative flex h-[100dvh] w-full max-w-none overflow-hidden rounded-none px-6 py-6 transition-colors duration-500 sm:px-10 sm:py-10";
+
+  const cardStyle = {
+    border: "1px solid var(--intro-border)",
+    backgroundColor: "var(--intro-bg)",
+    boxShadow: state === "collapsed" 
+      ? "0 30px 120px rgba(0,0,0,0.65)"
+      : state === "expanded"
+        ? "0 40px 150px rgba(0,0,0,0.72)"
+        : "none",
+  };
 
   return (
     <LayoutGroup id="intro-overlay">
       <motion.div
-        className="intro-overlay fixed inset-0 z-[9999] flex items-center justify-center bg-[#050505] px-4"
+        className="intro-overlay fixed inset-0 z-[9999] flex items-center justify-center px-4 transition-colors duration-500"
         role="dialog"
         aria-modal="true"
         aria-label="Intro overlay"
         initial={false}
         animate={{ opacity: shouldFadeOut ? 0 : 1, scale: shouldFadeOut ? 1.05 : 1 }}
         transition={{ duration: 0.72, ease: "easeInOut" }}
-        style={{ pointerEvents: state === "closing" ? "none" : "auto" }}
+        style={{ 
+          pointerEvents: state === "closing" ? "none" : "auto", 
+          backgroundColor: "var(--intro-bg-dark)" 
+        }}
         onAnimationComplete={() => {
           if (shouldFadeOut) {
             setState("hidden");
@@ -192,6 +211,10 @@ export function IntroOverlay() {
             animate={{ borderRadius: shellRadius }}
             transition={shellSpring}
             className={cardClassName}
+            style={{
+              ...cardStyle,
+              pointerEvents: state === "collapsed" || state === "expanded" ? "auto" : "none",
+            }}
             onClick={(e) => {
               e.stopPropagation();
               if (state === "collapsed") {
@@ -212,7 +235,6 @@ export function IntroOverlay() {
                 setState("collapsed");
               }
             }}
-            style={{ pointerEvents: "auto" }}
           >
             <div className={state === "collapsed" ? "flex w-full items-center gap-3" : "flex w-full flex-col gap-6 sm:gap-7"}>
               <div className={state === "collapsed" ? "flex min-w-0 flex-1 items-center gap-3" : "flex items-start gap-4 sm:gap-5"}>
@@ -273,9 +295,14 @@ export function IntroOverlay() {
                   }}
                   whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.98 }}
-                  className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#1fbf5d] text-3xl leading-none text-black shadow-[0_16px_45px_rgba(31,191,93,0.35)] transition-shadow duration-200 hover:shadow-[0_18px_55px_rgba(31,191,93,0.45)]"
+                  className="grid h-12 w-12 shrink-0 place-items-center rounded-full text-3xl leading-none text-black transition-shadow duration-200"
+                  style={{
+                    backgroundColor: "var(--intro-success-color)",
+                    boxShadow: "0 16px 45px var(--intro-success-shadow)",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 18px 55px var(--intro-success-shadow-hover)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 16px 45px var(--intro-success-shadow)")}
                   aria-label="Open introduction"
-                  style={{ pointerEvents: "auto" }}
                   disabled={false}
                 >
                   +
@@ -306,8 +333,14 @@ export function IntroOverlay() {
                       }}
                       whileHover={{ scale: 1.04, y: -1 }}
                       whileTap={{ scale: 0.98 }}
-                      className="rounded-full bg-[#0ea5e9] px-5 py-3 text-sm font-semibold text-white transition-shadow duration-200 hover:shadow-[0_12px_28px_rgba(14,165,233,0.24)]"
-                      style={{ pointerEvents: "auto" }}
+                      className="rounded-full px-5 py-3 text-sm font-semibold text-white transition-shadow duration-200"
+                      style={{
+                        backgroundColor: "var(--intro-primary-color)",
+                        boxShadow: "0 12px 28px var(--intro-primary-shadow)",
+                        pointerEvents: "auto",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 14px 35px var(--intro-primary-shadow)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 12px 28px var(--intro-primary-shadow)")}
                     >
                       Visit Website
                     </motion.button>
