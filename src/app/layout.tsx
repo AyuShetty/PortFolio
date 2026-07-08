@@ -70,8 +70,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-primary transition-colors duration-500">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <BackgroundMotion />
-          <Script id="intro-visit-flag" strategy="beforeInteractive">
-          {`(function () {
+          <Script id="intro-visit-flag" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `(function () {
   try {
     var visited = window.localStorage.getItem("visited") === "true";
     document.documentElement.dataset.introVisited = visited ? "true" : "false";
@@ -80,13 +79,11 @@ export default function RootLayout({
     document.documentElement.dataset.introVisited = "false";
     document.documentElement.dataset.introState = "intro";
   }
-})();`}
-        </Script>
+})();` }} />
         <IntroOverlay />
         <div className="site-shell relative z-10 max-w-[100vw] overflow-x-hidden">{children}</div>
         </ThemeProvider>
-        <Script id="performance-polyfill" strategy="afterInteractive">
-          {`(function () {
+        <Script id="performance-polyfill" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `(function () {
   if (typeof window === "undefined") return;
   var noop = function () {};
   var perf = window.performance || {};
@@ -111,8 +108,7 @@ export default function RootLayout({
   }
   
   window.performance = perf;
-})();`}
-        </Script>
+})();` }} />
         <Analytics />
       </body>
     </html>

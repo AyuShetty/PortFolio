@@ -3,49 +3,60 @@
 import { useEffect, useState } from "react";
 import DomeGallery, { type DomeGalleryImage } from "@/components/portfolio/DomeGallery";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
-import { EVENTS, POAPS } from "@/components/portfolio/experience-data";
-import type { PoapEntry } from "@/components/portfolio/experience-data";
-import "./gallery.css";
+import { EVENTS } from "@/components/portfolio/experience-data";
+import { JourneyTimeline } from "@/components/journey/JourneyTimeline";
+import { StoryModal } from "@/components/journey/StoryModal";
+import "./journey.css";
 
-export default function GalleryPage() {
+export default function JourneyPage() {
   const [galleryImages, setGalleryImages] = useState<DomeGalleryImage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeEventId, setActiveEventId] = useState<string | null>(null);
+  const [progressPercent, setProgressPercent] = useState(0);
 
   useEffect(() => {
-    async function loadImages() {
-      try {
-        const response = await fetch("/api/gallery");
-        const data = await response.json();
-        setGalleryImages(data.images || []);
-      } catch (error) {
-        console.error("Failed to load gallery images:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadImages();
+    fetch("/api/gallery")
+      .then((r) => r.json())
+      .then((data) => setGalleryImages(data.images ?? []))
+      .catch(() => {})
+      .finally(() => setIsLoading(false));
   }, []);
 
-  const getEventPoaps = (eventId: string): PoapEntry[] => {
-    // Filter POAPs associated with this event
-    return POAPS.filter((poap) => poap.event.toLowerCase().includes(eventId) || eventId.includes(poap.event.toLowerCase()));
-  };
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (typeof detail === "number") setProgressPercent(detail);
+    };
+    window.addEventListener("journey-progress", handler);
+    return () => window.removeEventListener("journey-progress", handler);
+  }, []);
 
   return (
-    <div className="gallery-page">
-      {/* Dome Gallery Section */}
-      <section className="gallery-dome-section">
-        <header className="gallery-header">
+    <div className="journey-page">
+      {/* ── Progress bar ── */}
+      {progressPercent > 0 && (
+        <div className="journey-progress-bar">
+          <div className="journey-progress-fill" style={{ width: `${progressPercent}%` }}>
+            <span className="journey-progress-text">{progressPercent}%</span>
+          </div>
+        </div>
+      )}
+
+      {/* ── Dome hero section ── */}
+      <section className="journey-dome-section">
+        <header className="journey-header">
           <PrimaryNav />
-          <h1 className="gallery-title">Memories & Work</h1>
+          <div className="journey-header-text">
+            <h1 className="journey-title">Journey</h1>
+            <p className="journey-subtitle">
+              The experiences, people, projects, and milestones that have shaped my journey as an engineer, leader, and lifelong learner.
+            </p>
+          </div>
         </header>
 
-        <div className="gallery-content">
+        <div className="journey-dome-content">
           {isLoading ? (
-            <div style={{ color: "#888", textAlign: "center" }}>
-              <p>Loading gallery...</p>
-            </div>
+            <div className="journey-dome-loading"><p>Loading…</p></div>
           ) : galleryImages.length > 0 ? (
             <DomeGallery
               images={galleryImages}
@@ -55,81 +66,29 @@ export default function GalleryPage() {
               dragSensitivity={1.2}
             />
           ) : (
-            <div style={{ color: "#888", textAlign: "center" }}>
-              <p>No images found in gallery</p>
-            </div>
+            <div className="journey-dome-loading"><p>No images found</p></div>
           )}
         </div>
       </section>
 
-      {/* Events Section */}
-      <section className="events-section">
-        <div className="events-container">
-          <div className="events-header-content">
-            <h2>Events & Milestones</h2>
-            <p>Hackathons, workshops, and ecosystem participation</p>
+      {/* ── Timeline section ── */}
+      <section className="journey-timeline-section">
+        <div className="journey-timeline-container">
+          <div className="journey-timeline-header">
+            <h2 className="journey-timeline-heading">Events &amp; Milestones</h2>
+            <p className="journey-timeline-sub">A chronological look at the events that shaped who I am.</p>
           </div>
-
-          <div className="events-grid">
-            {EVENTS.map((event, index) => (
-              <div key={event.id} className="event-card" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="event-date-badge">
-                  <span className="event-year">{event.year}</span>
-                  <span className="event-date">{event.date}</span>
-                </div>
-
-                <div className="event-content">
-                  <h3 className="event-title">{event.title}</h3>
-
-                  <div className="event-meta">
-                    {event.location && <span className="event-location">📍 {event.location}</span>}
-                    {event.role && <span className="event-role">👤 {event.role}</span>}
-                  </div>
-
-                  <p className="event-summary">{event.summary}</p>
-
-                  <div className="event-highlights">
-                    <h4>Highlights:</h4>
-                    <ul>
-                      {event.highlights.map((highlight, idx) => (
-                        <li key={idx}>{highlight}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="event-tags">
-                    {event.tags.map((tag) => (
-                      <span key={tag} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* POAPs Section */}
-                  {getEventPoaps(event.id).length > 0 && (
-                    <div className="event-poaps">
-                      <h4>🏅 POAPs</h4>
-                      <div className="poaps-list">
-                        {getEventPoaps(event.id).map((poap) => (
-                          <div key={poap.title} className="poap-item">
-                            {poap.badgeUrl && (
-                              <img src={poap.badgeUrl} alt={poap.title} className="poap-badge" />
-                            )}
-                            <div className="poap-info">
-                              <p className="poap-title">{poap.title}</p>
-                              {poap.summary && <p className="poap-summary">{poap.summary}</p>}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+          <JourneyTimeline events={EVENTS} onViewStory={setActiveEventId} />
         </div>
       </section>
+
+      {/* ── Story modal ── */}
+      <StoryModal
+        events={EVENTS}
+        activeId={activeEventId}
+        onClose={() => setActiveEventId(null)}
+        onNavigate={setActiveEventId}
+      />
     </div>
   );
 }
