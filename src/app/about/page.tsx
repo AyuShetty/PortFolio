@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { ResumeDownloadButton } from "@/components/ResumeDownloadButton";
 import { SERVICES, SKILL_GROUPS, TIMELINE } from "@/components/portfolio/experience-data";
 
@@ -13,8 +12,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="content-layout">
-      <PrimaryNav />
-
       <header className="content-hero">
         <h1>About & Capabilities</h1>
         <p>System-minded product engineering with a focus on governance, education, and community tooling.</p>
@@ -29,9 +26,9 @@ export default function AboutPage() {
           {SKILL_GROUPS.map((group) => (
             <div key={group.title} className="skill-group">
               <h3>{group.title}</h3>
-              <ul>
+              <ul className="skill-tags">
                 {group.skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
+                  <li key={skill} className="skill-tag">{skill}</li>
                 ))}
               </ul>
             </div>

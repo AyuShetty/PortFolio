@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { TOP_HIGHLIGHTS } from "@/components/portfolio/experience-data";
 
 export const dynamic = "force-dynamic";
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
 export default function HighlightsPage() {
   return (
     <main className="content-layout">
-      <PrimaryNav />
-
       <header className="content-hero">
         <h1>Top Highlights</h1>
         <p>Key milestones across governance tooling, Web3 education, and community leadership.</p>

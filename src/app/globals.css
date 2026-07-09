@@ -241,7 +241,7 @@ html[data-intro-state="transitioning"] .site-shell::before {
 
 .hero-content--below {
   height: auto;
-  padding: 450px 0 0;
+  padding: 550px 0 0;
   justify-content: flex-start;
 }
 
@@ -945,7 +945,7 @@ main.grid-inner {
 /* Content hero section */
 .content-hero {
   text-align: center;
-  padding: 80px 0 60px;
+  padding: 140px 0 60px;
   margin-bottom: 60px;
   border-bottom: 1px solid var(--card-border);
 }
@@ -1275,7 +1275,7 @@ main.grid-inner {
   }
 
   .content-hero {
-    padding: 40px 0 40px;
+    padding: 100px 0 40px;
     margin-bottom: 40px;
   }
 
@@ -1667,4 +1667,144 @@ a:hover {
 
 .card-border {
   border: 1px solid var(--color-text-muted);
+}
+
+/* Experience Accordion Styles */
+.experience-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-accordion {
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  background: var(--card-bg);
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+.experience-accordion:hover {
+  border-color: var(--card-border-hover);
+}
+
+.experience-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text-main);
+  transition: background 200ms ease;
+}
+
+.experience-accordion-header:hover {
+  background: var(--card-bg-hover);
+}
+
+.experience-accordion-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.experience-accordion-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  transition: transform 200ms ease;
+  width: 24px;
+  text-align: center;
+}
+
+.experience-accordion.open .experience-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.experience-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease;
+}
+
+.experience-accordion.open .experience-accordion-content {
+  max-height: 800px;
+}
+
+.experience-accordion-content > * {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.experience-accordion-content .detail-list {
+  margin-top: 0.5rem;
+}
+
+.experience-accordion-content .experience-skills {
+  margin-top: 1rem;
+}
+
+/* Highlights Page - Subtle hover depth changes */
+.panel-card {
+  border: 1px solid var(--card-border);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--surface-shadow);
+  transition: all 200ms ease;
+}
+
+.panel-card:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.panel-card h3 {
+  font-family: var(--font-display-family);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--color-accent);
+}
+
+.panel-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 0 1.5rem;
+}
+
+/* Skill Tags - Hover effects */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-tag {
+  padding: 0.4rem 0.9rem;
+  background: rgba(var(--color-surface-rgb), 0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  cursor: default;
+  transition: all 200ms ease;
+}
+
+.skill-tag:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
+  color: var(--color-text-main);
+  transform: translateY(-1px);
 }

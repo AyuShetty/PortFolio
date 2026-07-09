@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ImageGallery } from "@/components/galleries/ImageGallery";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { CONTRIBUTIONS, PROJECT_WORK } from "@/components/portfolio/experience-data";
 import { getGalleryImages } from "@/lib/gallery";
 
@@ -16,7 +15,6 @@ export default async function ProjectsPage() {
 
   return (
     <main className="gallery-layout">
-      <PrimaryNav />
       <section className="panel">
         <h2>Projects & Work</h2>
         <p>Product builds across Web3 education, AI agent tooling, and governance analytics.</p>

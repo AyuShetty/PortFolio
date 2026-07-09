@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { LinkedInEmbeds } from "@/components/galleries/LinkedInEmbeds";
 import { LINKEDIN_POSTS } from "@/components/portfolio/linkedin-posts";
 
@@ -13,8 +12,6 @@ export const metadata: Metadata = {
 export default function AchievementsPage() {
   return (
     <main className="content-layout">
-      <PrimaryNav />
-
       <header className="content-hero">
         <h1>Achievements</h1>
         <p>Governance milestones, research output, and hackathon wins documented here.</p>

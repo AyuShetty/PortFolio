@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { PROJECTS, PROJECT_WORK } from "@/components/portfolio/experience-data";
 
 export const dynamic = "force-dynamic";
@@ -46,8 +45,6 @@ export default async function ProjectCaseStudyPage({
 
   return (
     <main className="content-layout">
-      <PrimaryNav />
-
       <header className="content-hero">
         <h1>{project.title}</h1>
         <p>{project.summary}</p>

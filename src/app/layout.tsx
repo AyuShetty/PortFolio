@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import BackgroundMotion from "@/components/intro/BackgroundMotion";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import "./globals.css";
 
 const monaSans = Mona_Sans({
@@ -81,7 +82,10 @@ export default function RootLayout({
   }
 })();` }} />
         <IntroOverlay />
-        <div className="site-shell relative z-10 max-w-[100vw] overflow-x-hidden">{children}</div>
+        <div className="site-shell relative z-10 max-w-[100vw] overflow-x-hidden">
+          <PrimaryNav className="primary-nav--fixed" />
+          {children}
+        </div>
         </ThemeProvider>
         <Script id="performance-polyfill" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `(function () {
   if (typeof window === "undefined") return;

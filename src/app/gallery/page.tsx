@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import DomeGallery, { type DomeGalleryImage } from "@/components/portfolio/DomeGallery";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { EVENTS } from "@/components/portfolio/experience-data";
 import { JourneyTimeline } from "@/components/journey/JourneyTimeline";
 import { StoryModal } from "@/components/journey/StoryModal";
@@ -45,7 +44,6 @@ export default function JourneyPage() {
       {/* ── Dome hero section ── */}
       <section className="journey-dome-section">
         <header className="journey-header">
-          <PrimaryNav />
           <div className="journey-header-text">
             <h1 className="journey-title">Journey</h1>
             <p className="journey-subtitle">
