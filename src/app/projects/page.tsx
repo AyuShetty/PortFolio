@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ImageGallery } from "@/components/galleries/ImageGallery";
+import { ContributionCard } from "./ContributionCard";
 import { CONTRIBUTIONS, PROJECT_WORK } from "@/components/portfolio/experience-data";
 import { getGalleryImages } from "@/lib/gallery";
 
@@ -37,23 +38,7 @@ export default async function ProjectsPage() {
         <p>Selected platforms and initiatives where I shipped core UI, research, and platform tooling.</p>
         <div className="contributions-grid">
           {CONTRIBUTIONS.map((item) => (
-            <div key={item.title} className="contribution-card">
-              <div className="contribution-header">
-                <div className="contribution-logo" aria-hidden="true">
-                  {item.logoText}
-                </div>
-                <div>
-                  <h3>{item.title}</h3>
-                  <span>{item.subtitle}</span>
-                  {item.duration && <span className="contribution-duration">{item.duration}</span>}
-                </div>
-              </div>
-              <ul>
-                {item.highlights.map((highlight) => (
-                  <li key={`${item.title}-${highlight}`}>{highlight}</li>
-                ))}
-              </ul>
-            </div>
+            <ContributionCard key={item.title} item={item} />
           ))}
         </div>
       </section>

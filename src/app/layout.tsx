@@ -7,6 +7,7 @@ import BackgroundMotion from "@/components/intro/BackgroundMotion";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import "./globals.css";
+import "./ui-improvements.css";
 
 const monaSans = Mona_Sans({
   variable: "--font-header",

@@ -1,44 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  /* LIGHT MODE (Editorial / Off Track aesthetic) */
-  --color-bg: #F4F3F1;         /* Premium Slate Cream */
-  --color-bg-rgb: 244, 243, 241;
-  --color-text-main: #111112;  /* Deep Charcoal / Obsidian */
-  --color-text-secondary: rgb(17 17 18 / 0.78);
-  --color-text-muted: #7F8177; /* Muted Sage */
-  --color-text-tertiary: #5a5c56; /* Tertiary text */
-  --color-accent: #2D3126;     /* Dark Olive Accent */
-  --color-surface: #FFFFFF;    /* Crisp White for cards */
+  /* MONOCHROME + BRONZE (Editorial / Premium aesthetic) */
+  --color-bg: #FAFAFA;         /* Warm White */
+  --color-bg-rgb: 250, 250, 250;
+  --color-text-main: #1A1A1A;  /* Near Black */
+  --color-text-secondary: rgb(26 26 26 / 0.75);
+  --color-text-muted: #8A8A8A; /* Neutral Gray */
+  --color-text-tertiary: #9A9A9A; /* Tertiary text */
+  --color-accent: #C4A574;     /* Muted Bronze */
+  --color-surface: #FFFFFF;    /* Pure White */
 
   --color-surface-rgb: 255, 255, 255;
-  --card-bg: rgba(255, 255, 255, 0.72);
-  --card-bg-hover: rgba(255, 255, 255, 0.9);
-  --card-border: rgba(17, 17, 18, 0.1);       /* Light subtle line */
-  --card-border-hover: rgba(17, 17, 18, 0.2); /* Stronger dark line */
-  --surface-shadow: 0 2px 8px rgba(45, 45, 45, 0.06);
-  --surface-shadow-hover: 0 20px 40px rgba(45, 45, 45, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg-hover: rgba(255, 255, 255, 1);
+  --card-border: rgba(196, 165, 116, 0.2);       /* Bronze subtle line */
+  --card-border-hover: rgba(196, 165, 116, 0.35); /* Stronger bronze line */
+  --surface-shadow: 0 2px 8px rgba(26, 26, 26, 0.06);
+  --surface-shadow-hover: 0 20px 40px rgba(26, 26, 26, 0.12);
 
   /* Intro overlay colors */
-  --intro-bg: rgba(0, 0, 0, 0.95);
-  --intro-bg-dark: #050505;
+  --intro-bg: rgba(26, 26, 26, 0.98);
+  --intro-bg-dark: #0D0D0D;
   --intro-border: rgba(255, 255, 255, 0.1);
-  --intro-success-color: #1fbf5d;
-  --intro-success-shadow: rgba(31, 191, 93, 0.35);
-  --intro-success-shadow-hover: rgba(31, 191, 93, 0.45);
-  --intro-primary-color: #0ea5e9;
-  --intro-primary-shadow: rgba(14, 165, 233, 0.24);
+  --intro-success-color: #C4A574;
+  --intro-success-shadow: rgba(196, 165, 116, 0.35);
+  --intro-success-shadow-hover: rgba(196, 165, 116, 0.5);
+  --intro-primary-color: #C4A574;
+  --intro-primary-shadow: rgba(196, 165, 116, 0.3);
 
   /* Button colors */
-  --button-resume-bg: #5a7e7a;
-  --button-resume-bg-hover: #4a6b68;
+  --button-resume-bg: #C4A574;
+  --button-resume-bg-hover: #B8956A;
 
   /* Blur and shadow colors */
-  --blur-bg: rgba(26, 38, 25, 0.3);
-  --dome-shadow: rgba(0, 0, 0, 0.35);
+  --blur-bg: rgba(26, 26, 26, 0.15);
+  --dome-shadow: rgba(0, 0, 0, 0.25);
 
   /* Motion blob colors */
-  --bg-blob: #1E293B;
+  --bg-blob: #E8E6E0;
 
   color-scheme: light;
 
@@ -48,44 +48,44 @@
 }
 
 .dark {
-  /* DARK MODE (Tech / Racing aesthetic) */
-  --color-bg: #111112;
-  --color-bg-rgb: 17, 17, 18;
-  --color-text-main: #F4F3F1;
-  --color-text-secondary: rgb(244 243 241 / 0.85);
-  --color-text-muted: #7F8177;
-  --color-text-tertiary: #a8ab9e; /* Tertiary text for dark mode */
-  --color-accent: #D2FF00;
-  --color-surface: #2D3126;
+  /* DARK MODE (Refined Editorial) */
+  --color-bg: #0D0D0D;        /* Rich Black */
+  --color-bg-rgb: 13, 13, 13;
+  --color-text-main: #F0F0F0; /* Off White */
+  --color-text-secondary: rgb(240 240 240 / 0.75);
+  --color-text-muted: #6B6B6B;
+  --color-text-tertiary: #7A7A7A;
+  --color-accent: #C4A574;    /* Muted Bronze */
+  --color-surface: #1A1A1A;   /* Elevated Black */
 
-  --color-surface-rgb: 45, 49, 38;
-  --card-bg: rgba(45, 49, 38, 0.88);
-  --card-bg-hover: rgba(45, 49, 38, 0.98);
-  --card-border: rgba(210, 255, 0, 0.18);
-  --card-border-hover: rgba(210, 255, 0, 0.35);
-  --surface-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --surface-shadow-hover: 0 20px 40px rgba(212, 255, 0, 0.2);
+  --color-surface-rgb: 26, 26, 26;
+  --card-bg: rgba(26, 26, 26, 0.92);
+  --card-bg-hover: rgba(26, 26, 26, 1);
+  --card-border: rgba(196, 165, 116, 0.15);
+  --card-border-hover: rgba(196, 165, 116, 0.3);
+  --surface-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --surface-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
 
   /* Intro overlay colors (same in dark mode for consistency) */
-  --intro-bg: rgba(0, 0, 0, 0.95);
-  --intro-bg-dark: #050505;
-  --intro-border: rgba(255, 255, 255, 0.1);
-  --intro-success-color: #1fbf5d;
-  --intro-success-shadow: rgba(31, 191, 93, 0.35);
-  --intro-success-shadow-hover: rgba(31, 191, 93, 0.45);
-  --intro-primary-color: #0ea5e9;
-  --intro-primary-shadow: rgba(14, 165, 233, 0.24);
+  --intro-bg: rgba(26, 26, 26, 0.98);
+  --intro-bg-dark: #0D0D0D;
+  --intro-border: rgba(255, 255, 255, 0.08);
+  --intro-success-color: #C4A574;
+  --intro-success-shadow: rgba(196, 165, 116, 0.35);
+  --intro-success-shadow-hover: rgba(196, 165, 116, 0.5);
+  --intro-primary-color: #C4A574;
+  --intro-primary-shadow: rgba(196, 165, 116, 0.3);
 
-  /* Button colors (adjust for dark mode if desired) */
-  --button-resume-bg: #5a7e7a;
-  --button-resume-bg-hover: #4a6b68;
+  /* Button colors */
+  --button-resume-bg: #C4A574;
+  --button-resume-bg-hover: #B8956A;
 
   /* Blur and shadow colors */
-  --blur-bg: rgba(26, 38, 25, 0.3);
-  --dome-shadow: rgba(0, 0, 0, 0.35);
+  --blur-bg: rgba(26, 26, 26, 0.4);
+  --dome-shadow: rgba(0, 0, 0, 0.5);
 
   /* Motion blob colors */
-  --bg-blob: #1E293B;
+  --bg-blob: #1A1A1A;
 
   color-scheme: dark;
 }
