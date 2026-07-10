@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LinkedInEmbeds } from "@/components/galleries/LinkedInEmbeds";
 import { LINKEDIN_POSTS } from "@/components/portfolio/linkedin-posts";
 
@@ -18,6 +19,12 @@ export default function AchievementsPage() {
       </header>
 
       <LinkedInEmbeds posts={LINKEDIN_POSTS} category="achievements" />
+
+      <section className="page-cta">
+        <h3>View full experience</h3>
+        <p>Explore professional journey and leadership roles</p>
+        <Link href="/experience" className="cta-button">Experience</Link>
+      </section>
     </main>
   );
 }

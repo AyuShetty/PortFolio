@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { TOP_HIGHLIGHTS } from "@/components/portfolio/experience-data";
+import Link from "next/link";
+import { TOP_HIGHLIGHTS, STATS } from "@/components/portfolio/experience-data";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,15 @@ export default function HighlightsPage() {
         <h1>Top Highlights</h1>
         <p>Key milestones across governance tooling, Web3 education, and community leadership.</p>
       </header>
+
+      <section className="stats-bar stats-bar--compact">
+        {STATS.map((stat) => (
+          <div key={stat.label} className="stat-item">
+            <span className="stat-value">{stat.value}</span>
+            <span className="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </section>
 
       <section className="panel">
         <h2>Highlights</h2>
@@ -32,6 +42,15 @@ export default function HighlightsPage() {
               )}
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="page-cta">
+        <h3>Explore the full journey</h3>
+        <p>See all experiences and projects</p>
+        <div className="cta-group">
+          <Link href="/experience" className="cta-button">Experience</Link>
+          <Link href="/projects" className="cta-button cta-button--secondary">Projects</Link>
         </div>
       </section>
     </main>

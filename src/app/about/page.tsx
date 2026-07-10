@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ResumeDownloadButton } from "@/components/ResumeDownloadButton";
-import { SERVICES, SKILL_GROUPS, TIMELINE } from "@/components/portfolio/experience-data";
+import { SERVICES, SKILL_GROUPS, TIMELINE, STATS } from "@/components/portfolio/experience-data";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,15 @@ export default function AboutPage() {
           <ResumeDownloadButton />
         </div>
       </header>
+
+      <section className="stats-bar">
+        {STATS.map((stat) => (
+          <div key={stat.label} className="stat-item">
+            <span className="stat-value">{stat.value}</span>
+            <span className="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </section>
 
       <section className="panel">
         <h2>Skill Groups</h2>
@@ -59,6 +69,12 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="page-cta">
+        <h3>Let's build something together</h3>
+        <p>Have a project in mind or want to collaborate?</p>
+        <Link href="/projects" className="cta-button">View Projects</Link>
       </section>
     </main>
   );

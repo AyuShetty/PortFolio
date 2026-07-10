@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ResumeDownloadButton } from "@/components/ResumeDownloadButton";
 import { ExperienceSection } from "./ExperienceSection";
 
@@ -22,6 +23,12 @@ export default function ExperiencePage() {
 
       <ExperienceSection title="Professional Experience" category="professional" />
       <ExperienceSection title="Leadership & Organizations" category="leadership" />
+
+      <section className="page-cta">
+        <h3>Explore project work</h3>
+        <p>See what I've built across Web3, AI, and product engineering</p>
+        <Link href="/projects" className="cta-button">View Projects</Link>
+      </section>
     </main>
   );
 }
