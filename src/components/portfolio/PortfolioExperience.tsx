@@ -28,31 +28,32 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 	const [contactStatus, setContactStatus] = useState("");
 
 	useEffect(() => {
+		// Cache DOM refs once — avoid querySelector on every scroll event
+		const blurLayer = document.querySelector<HTMLElement>(".blur-layer");
+		const introText = document.querySelector<HTMLElement>(".intro-text");
+		const rgbValues = getComputedStyle(document.documentElement)
+			.getPropertyValue("--color-surface-rgb").trim();
+
+		let ticking = false;
 		const handleScroll = () => {
-			const scrollY = window.scrollY;
-			const blur = Math.min(scrollY / 100, 12);
-			const opacity = Math.min(scrollY / 500, 0.6);
-			const introOpacity = Math.max(1 - scrollY / 200, 0);
-
-			const blurLayer = document.querySelector(".blur-layer");
-			if (blurLayer) {
-				(blurLayer as HTMLElement).style.backdropFilter = `blur(${blur}px)`;
-				const rgbValues = getComputedStyle(document.documentElement).getPropertyValue('--color-surface-rgb').trim();
-				(blurLayer as HTMLElement).style.background = `rgba(${rgbValues}, ${opacity})`;
-			}
-
-			const introText = document.querySelector(".intro-text");
-			if (introText) {
-				(introText as HTMLElement).style.opacity = introOpacity.toString();
-			}
+			if (ticking) return;
+			ticking = true;
+			requestAnimationFrame(() => {
+				const scrollY = window.scrollY;
+				if (blurLayer) {
+					blurLayer.style.backdropFilter = `blur(${Math.min(scrollY / 100, 12)}px)`;
+					blurLayer.style.background = `rgba(${rgbValues}, ${Math.min(scrollY / 500, 0.6)})`;
+				}
+				if (introText) {
+					introText.style.opacity = String(Math.max(1 - scrollY / 200, 0));
+				}
+				ticking = false;
+			});
 		};
 
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", handleScroll, { passive: true });
 		handleScroll();
-
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
+		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
 	useEffect(() => {
@@ -109,7 +110,7 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 					<DomeGallery
 						images={galleryImages}
 						maxVerticalRotationDeg={0}
-						segments={34}
+						segments={28}
 						dragDampening={2}
 						grayscale
 					/>
