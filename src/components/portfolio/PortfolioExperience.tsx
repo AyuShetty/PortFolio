@@ -3,10 +3,12 @@
 import Link from "next/link";
 import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-import { PrimaryNav } from "@/components/navigation/PrimaryNav";
 import { CanvasErrorBoundary } from "@/components/portfolio/CanvasErrorBoundary";
 import DomeGallery, { type DomeGalleryImage } from "@/components/portfolio/DomeGallery";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { MarqueeTicker } from "@/components/MarqueeTicker";
+import { PixelText } from "@/components/PixelText";
+import { CardGlowWrapper } from "@/components/CardGlowWrapper";
+import { ProjectTiltStack } from "@/components/ProjectTiltStack";
 import {
 	EXPERIENCES,
 	PROJECTS,
@@ -21,7 +23,6 @@ interface PortfolioExperienceProps {
 }
 
 export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceProps) {
-	useSmoothScroll();
 	const rootRef = useRef<HTMLDivElement | null>(null);
 
 	const [contactStatus, setContactStatus] = useState("");
@@ -78,8 +79,8 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 				});
 			},
 			{
-				threshold: 0.2,
-				rootMargin: "0px 0px -12% 0px",
+				threshold: 0.08,
+				rootMargin: "0px 0px -5% 0px",
 			},
 		);
 
@@ -118,17 +119,18 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 			{/* Blur Layer */}
 			<div className="blur-layer" aria-hidden="true" />
 
-
-		{/* Fixed Navigation */}
-		<PrimaryNav className="primary-nav--fixed" />
-
 		{/* Content Starts Below */}
 		<main className="content portfolio-layout">
 			<header className="hero-content hero-content--below">
 					<div className="hero-copy">
-						<h1 className="hero-title">Ayush Shetty</h1>
+						<PixelText
+							text="AYUSH SHETTY"
+							tag="h1"
+							className="hero-title pixel-heading"
+							scramble
+						/>
 						<p className="hero-subtitle">
-							Product engineer focused on Web3, AI, and Ethereum governance tooling.
+							Software engineer and product developer building full-stack applications, AI integrations, and scalable systems.
 						</p>
 						<div className="hero-actions">
 							<Link href="#projects" className="action-button">
@@ -141,59 +143,31 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 					</div>
 				</header>
 
+				{/* Marquee between hero and first section */}
+				<div style={{ margin: "2rem 0" }}>
+					<MarqueeTicker />
+				</div>
+
 				<section id="projects" className="content-section">
-						<h2 className="section-title">Featured Projects</h2>
-						<p className="section-intro">
-							Shipped products across governance analytics, AI education, and community platforms.
-						</p>
-						<div className="project-grid">
-							{PROJECTS.map((project) => (
-								<div key={project.title} className="project-card">
-									<div className="project-header">
-										<span className="project-year">{project.year}</span>
-										<h3 className="project-title">{project.title}</h3>
-									</div>
-									<p className="project-summary">{project.summary}</p>
-									<p className="project-desc">{project.impact}</p>
-									<div className="project-tags">
-										{project.tags.map((tag) => (
-											<span key={tag} className="tag">
-												{tag}
-											</span>
-										))}
-									</div>
-									<div className="project-links">
-										{project.href && (
-											<Link href={project.href} className="project-link">
-												Case Study
-											</Link>
-										)}
-										<Link href="/projects" className="project-link">
-											All Projects
-										</Link>
-									</div>
-								</div>
-							))}
-						</div>
+						<ProjectTiltStack projects={PROJECTS} />
 					</section>
 
 				<section id="highlights" className="content-section">
 						<h2 className="section-title">Highlights &amp; Milestones</h2>
 						<div className="highlight-grid">
 							{TOP_HIGHLIGHTS.map((highlight) => (
-								<div key={highlight.title} className="highlight-card">
+								<CardGlowWrapper key={highlight.title} className="highlight-card">
 									<h3 className="highlight-title">{highlight.title}</h3>
 									<p className="highlight-desc">{highlight.summary}</p>
-								</div>
+								</CardGlowWrapper>
 							))}
 						</div>
 					</section>
 
 				<section id="stats" className="content-section">
-						<h2 className="section-title">By the Numbers</h2>
-						<div className="stat-grid">
+						<div className="stats-bar">
 							{STATS.map((stat) => (
-								<div key={stat.label} className="stat-card">
+								<div key={stat.label} className="stat-item">
 									<span className="stat-value">{stat.value}</span>
 									<span className="stat-label">{stat.label}</span>
 								</div>
@@ -204,12 +178,11 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 				<section id="about" className="content-section">
 						<h2 className="section-title">Skills &amp; Capabilities</h2>
 						<p className="section-intro">
-							Signal the tone: immersive product work across Web3 governance, AI tooling, and community
-							platforms.
+							Full-stack engineering across frontend, systems, and product development.
 						</p>
 						<div className="skill-group-grid">
 							{SKILL_GROUPS.map((group) => (
-								<div key={group.title} className="skill-group-card">
+								<CardGlowWrapper key={group.title} className="skill-group-card">
 									<h3 className="skill-group-title">{group.title}</h3>
 									<ul className="skill-list">
 										{group.skills.map((skill) => (
@@ -218,7 +191,7 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 											</li>
 										))}
 									</ul>
-								</div>
+								</CardGlowWrapper>
 							))}
 						</div>
 					</section>
@@ -227,13 +200,13 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 						<h2 className="section-title">Experience Timeline</h2>
 						<div className="experience-list">
 							{EXPERIENCES.slice(0, 3).map((exp, index) => (
-								<div key={`${exp.title}-${index}`} className="experience-card">
+								<CardGlowWrapper key={`${exp.title}-${index}`} className="experience-card">
 									<div className="experience-header">
 										<h3 className="experience-company">{exp.title}</h3>
 										<span className="experience-date">{exp.period}</span>
 									</div>
 									<p className="experience-role">{exp.role}</p>
-								</div>
+								</CardGlowWrapper>
 							))}
 						</div>
 						<div className="experience-actions">
@@ -285,10 +258,6 @@ export function PortfolioExperience({ galleryImages = [] }: PortfolioExperienceP
 						</div>
 					</section>
 			</main>
-
-			<footer className="page-footer">
-				<p>&copy; {new Date().getFullYear()} Ayush Shetty. All rights reserved.</p>
-			</footer>
 		</div>
 	);
 }

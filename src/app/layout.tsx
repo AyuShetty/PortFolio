@@ -6,6 +6,9 @@ import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import BackgroundMotion from "@/components/intro/BackgroundMotion";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PrimaryNav } from "@/components/navigation/PrimaryNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import "./globals.css";
 import "./ui-improvements.css";
 
@@ -30,14 +33,14 @@ export const metadata: Metadata = {
     template: "%s | Ayush Shetty",
   },
   description:
-    "Product engineer focused on Web3, AI, and Ethereum governance tooling. Portfolio highlights, projects, leadership, and research.",
+    "Software engineer and product developer. Full-stack developer with expertise in Web3, AI integration, and enterprise systems.",
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
     title: "Ayush Shetty | Portfolio",
     description:
-      "Product engineer focused on Web3, AI, and Ethereum governance tooling. Portfolio highlights, projects, leadership, and research.",
+      "Software engineer and product developer. Full-stack developer with expertise in Web3, AI integration, and enterprise systems.",
     type: "website",
     url: "/",
     images: [
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ayush Shetty | Portfolio",
     description:
-      "Product engineer focused on Web3, AI, and Ethereum governance tooling. Portfolio highlights, projects, leadership, and research.",
+      "Software engineer and product developer. Full-stack developer with expertise in Web3, AI integration, and enterprise systems.",
     images: ["/og.svg"],
   },
 };
@@ -82,11 +85,15 @@ export default function RootLayout({
     document.documentElement.dataset.introState = "intro";
   }
 })();` }} />
-        <IntroOverlay />
-        <div className="site-shell relative z-10 max-w-[100vw] overflow-x-hidden">
-          <PrimaryNav className="primary-nav--fixed" />
-          {children}
-        </div>
+          {/* IntroOverlay OUTSIDE site-shell so its z-index is not clipped */}
+          <IntroOverlay />
+          <div className="site-shell relative z-10" style={{ maxWidth: "100vw" }}>
+            <SmoothScrollProvider />
+            <PrimaryNav className="primary-nav--fixed" />
+            <ScrollReveal />
+            {children}
+            <SiteFooter />
+          </div>
         </ThemeProvider>
         <Script id="performance-polyfill" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `(function () {
   if (typeof window === "undefined") return;

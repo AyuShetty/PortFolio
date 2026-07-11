@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Achievements",
-  description: "Governance milestones, research output, and hackathon wins.",
+  description: "Key milestones in software engineering, community leadership, and technical contributions.",
 };
 
 export default function AchievementsPage() {
@@ -15,7 +15,7 @@ export default function AchievementsPage() {
     <main className="content-layout">
       <header className="content-hero">
         <h1>Achievements</h1>
-        <p>Governance milestones, research output, and hackathon wins documented here.</p>
+        <p>Key milestones in software engineering, community leadership, and technical contributions.</p>
       </header>
 
       <LinkedInEmbeds posts={LINKEDIN_POSTS} category="achievements" />

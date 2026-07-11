@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TOP_HIGHLIGHTS, STATS } from "@/components/portfolio/experience-data";
+import { MarqueeTicker } from "@/components/MarqueeTicker";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Highlights",
-  description: "Key milestones across governance tooling, Web3 education, and leadership.",
+  description: "Key milestones in software engineering, product development, and community leadership.",
 };
 
 export default function HighlightsPage() {
   return (
     <main className="content-layout">
-      <header className="content-hero">
+      <header className="content-hero" data-label="WINS">
         <h1>Top Highlights</h1>
-        <p>Key milestones across governance tooling, Web3 education, and community leadership.</p>
+        <p>Key milestones in software engineering, product development, and community leadership.</p>
       </header>
 
-      <section className="stats-bar stats-bar--compact">
+      <MarqueeTicker />
+
+      <section className="stats-bar stats-bar--compact" style={{ marginTop: "3rem" }}>
         {STATS.map((stat) => (
           <div key={stat.label} className="stat-item">
             <span className="stat-value">{stat.value}</span>

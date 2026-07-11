@@ -12,7 +12,7 @@ const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : us
 const NAME = "Ayush Shetty";
 const AVATAR_SRC = "/ayush-portrait.jpeg";
 const INTRO_COPY =
-  "Product engineer focused on Web3, AI, and Ethereum governance tooling. This intro sits on top of the site and only appears on first visit.";
+  "Software engineer and product developer building full-stack applications, AI integrations, and scalable systems. This intro sits on top of the site and only appears on first visit.";
 
 function TwitterIcon(props: SVGProps<SVGSVGElement>) {
   return (

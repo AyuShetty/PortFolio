@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { ImageGallery } from "@/components/galleries/ImageGallery";
-import { ContributionCard } from "./ContributionCard";
-import { CONTRIBUTIONS, PROJECT_WORK } from "@/components/portfolio/experience-data";
+import { ProjectSpotlight } from "@/components/ProjectSpotlight";
+import { PROJECTS, PROJECT_WORK } from "@/components/portfolio/experience-data";
 import { getGalleryImages } from "@/lib/gallery";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Case studies, project highlights, and galleries across Web3, AI, and governance tooling.",
+  description: "Software engineering projects spanning AI systems, IoT, computer vision, Web3, and mobile.",
 };
 
 export default async function ProjectsPage() {
@@ -16,35 +16,20 @@ export default async function ProjectsPage() {
 
   return (
     <main className="gallery-layout">
+      <header className="content-hero" data-label="WORK">
+        <h1>Projects</h1>
+        <p>Software engineering projects spanning AI infrastructure, IoT, computer vision, Web3, and mobile — mostly built solo.</p>
+      </header>
+
       <section className="panel">
-        <h2>Projects & Work</h2>
-        <p>Product builds across Web3 education, AI agent tooling, and governance analytics.</p>
-        <div className="highlight-grid">
-          {PROJECT_WORK.map((item) => (
-            <div key={item.title} className="panel-card">
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-              <ul className="detail-list">
-                {item.details.map((detail) => (
-                  <li key={`${item.title}-${detail}`}>{detail}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <h2>All Projects</h2>
+        <p>Hover a row to spotlight it.</p>
+        <ProjectSpotlight items={PROJECT_WORK} projects={PROJECTS} />
       </section>
-      <section className="panel">
-        <h2>Major Products & Contributions</h2>
-        <p>Selected platforms and initiatives where I shipped core UI, research, and platform tooling.</p>
-        <div className="contributions-grid">
-          {CONTRIBUTIONS.map((item) => (
-            <ContributionCard key={item.title} item={item} />
-          ))}
-        </div>
-      </section>
+
       <ImageGallery
         title="Project Gallery"
-        description="Interactive captures from shipped products and prototype explorations. Drop images into public/projects and manage ordering/featured shots via public/projects/gallery.json."
+        description="Interactive captures from shipped products and prototype explorations."
         images={images}
         emptyState="No project images yet. Add files to public/projects to populate this gallery."
         enableReorder

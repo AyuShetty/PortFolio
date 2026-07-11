@@ -1,5 +1,24 @@
 export type ZoneKey = "hero" | "projects" | "about" | "contact";
 
+export type ProjectCaseStudy = {
+  status: string;
+  github?: string;
+  live?: string;
+  overview: string;
+  problem: string;
+  whyBuilt: string;
+  objectives: string[];
+  myRole: string;
+  architecture?: string; // text description; diagram image paths can go in gallery
+  techStack: { category: string; items: string[] }[];
+  challenges: { title: string; detail: string }[];
+  process: string[];
+  features: { title: string; detail: string }[];
+  implementation: string;
+  futureImprovements: string[];
+  lessonsLearned: string[];
+};
+
 export type ProjectEntry = {
   id: string;
   title: string;
@@ -10,6 +29,7 @@ export type ProjectEntry = {
   impact: string;
   href: string;
   tags: string[];
+  caseStudy?: ProjectCaseStudy;
 };
 
 export type SkillGroup = {
@@ -171,30 +191,7 @@ export const ZONES: Array<{ key: ZoneKey; label: string; range: [number, number]
   { key: "contact", label: "Contact", range: [0.8, 1] },
 ];
 
-export const PROJECTS: ProjectEntry[] = [
-  {
-    id: "eth-ed",
-    title: "Eth.Ed",
-    summary: "AI-powered Web3 learning platform with ENS-based certificates and gamified lessons.",
-    stack: "AI agents, ENS, Web3, Micropayments",
-    role: "Product Engineer",
-    year: "2026",
-    impact: "Built an end-to-end learning platform with payments and credentialing.",
-    href: "/projects/eth-ed",
-    tags: ["Web3", "AI", "Education"],
-  },
-  {
-    id: "eipsinsight",
-    title: "EIPsInsight",
-    summary: "Ethereum governance analytics platform for tracking EIP lifecycles.",
-    stack: "Web3 analytics, UI/UX, Data viz",
-    role: "Contributor",
-    year: "2024",
-    impact: "Helped contributors interpret governance signals with clearer insights.",
-    href: "/projects/eipsinsight",
-    tags: ["Governance", "Web3", "Analytics"],
-  },
-];
+export { PROJECTS_WITH_CASE_STUDIES as PROJECTS } from "./projects-data";
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
@@ -838,27 +835,83 @@ export const WRITING_HIGHLIGHTS: WritingEntry[] = [
 export const PROJECT_WORK: ProjectWorkEntry[] = [
   {
     title: "Eth.Ed",
-    summary: "AI-powered Web3 learning platform.",
+    summary: "AI-powered Web3 learning platform. Won ENS Pool Prize at ETHMumbai 2026.",
     details: [
       "Gamified learning tracks with AI personalization",
-      "Smart contract integration for micropayments",
-      "Full-stack Web3 architecture and deployment",
+      "Smart contract micropayments and ENS-based credentials",
+      "Full-stack architecture from zero to deployment",
+    ],
+  },
+  {
+    title: "Local AI Infrastructure",
+    summary: "Distributed local AI workflow platform for autonomous orchestration and LLM execution.",
+    details: [
+      "Python, Ollama, Docker, Playwright, Open WebUI",
+      "Autonomous workflow orchestration across multiple systems",
+      "Browser automation and distributed local LLM execution",
+    ],
+  },
+  {
+    title: "AI Workflow Automation Engine",
+    summary: "Automation framework integrating local AI with browser automation for engineering tasks.",
+    details: [
+      "Intelligent agent pipelines for repetitive task automation",
+      "Document processing with local LLM integration",
+      "Python + Playwright + AI agents",
+    ],
+  },
+  {
+    title: "Smart Home IoT Platform",
+    summary: "ESP32-based smart automation system with modular architecture for home automation.",
+    details: [
+      "Wireless device control and sensor monitoring",
+      "Modular architecture designed to scale",
+      "ESP32, embedded C++, IoT protocols",
+    ],
+  },
+  {
+    title: "Facial KeyGen",
+    summary: "Biometric authentication system generating cryptographic keys from facial recognition.",
+    details: [
+      "Computer vision pipeline using OpenCV",
+      "ML-based facial biometric extraction",
+      "Explored as complementary approach for post-quantum security",
+    ],
+  },
+  {
+    title: "AirGesture",
+    summary: "Real-time hand gesture recognition for touchless presentation control.",
+    details: [
+      "Python, OpenCV, MediaPipe",
+      "Real-time inference for classroom and presentation use",
+      "Translates gestures into slide controls",
+    ],
+  },
+  {
+    title: "EtherWorld iOS",
+    summary: "Designed the architecture and modular structure for the EtherWorld iOS application.",
+    details: [
+      "Scalable navigation architecture",
+      "API integration patterns",
+      "Maintainable modular app structure",
     ],
   },
   {
     title: "EIPsInsight",
-    summary: "Ethereum governance analytics platform.",
+    summary: "Ethereum governance analytics platform — team project, EF ESP-supported.",
     details: [
-      "Helps contributors understand EIP lifecycles",
-      "Governance insight dashboards",
+      "Frontend contribution to EIP lifecycle tracking",
+      "Governance insight dashboards in React + TypeScript",
+      "Contributed to an Ethereum Foundation-supported project",
     ],
   },
   {
-    title: "EtherWorld Contributions",
-    summary: "Deep technical guides and protocol research breakdowns.",
+    title: "This Portfolio",
+    summary: "Immersive developer portfolio with 3D dome gallery and editorial design.",
     details: [
-      "Partial History Expiry guides",
-      "Protocol-level research summaries",
+      "3D canvas dome built with Three.js",
+      "Scroll-driven animations and motion design",
+      "Full design system in Next.js + TypeScript",
     ],
   },
 ];

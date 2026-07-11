@@ -9,53 +9,45 @@ interface LinkedInEmbedProps {
   category?: "technical" | "cultural" | "achievements" | "all";
 }
 
-declare global {
-  interface Window {
-    IN?: {
-      parse: () => void;
-    };
-  }
-}
-
 export function LinkedInEmbeds({ posts, category = "all" }: LinkedInEmbedProps) {
-  // Filter posts by category
-  const filteredPosts =
-    category === "all" ? posts : posts.filter((p) => p.category === category);
+  const filteredPosts = category === "all" ? posts : posts.filter((p) => p.category === category);
 
   const technicalPosts = filteredPosts.filter((p) => p.category === "technical");
   const culturalPosts = filteredPosts.filter((p) => p.category === "cultural");
   const achievementPosts = filteredPosts.filter((p) => p.category === "achievements");
 
   useEffect(() => {
-    // Load LinkedIn embed script
-    const script = document.createElement("script");
-    script.src = "https://platform.linkedin.com/badges/js/profile.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
+    // Pause Lenis while hovering over iframes so LinkedIn embeds scroll natively
+    const wrappers = document.querySelectorAll<HTMLElement>(".linkedin-post-wrapper");
+    const lenisEl = document.documentElement;
 
-    script.onload = () => {
-      if (window.IN) {
-        window.IN.parse();
-      }
-    };
+    const pause = () => lenisEl.setAttribute("data-lenis-prevent", "true");
+    const resume = () => lenisEl.removeAttribute("data-lenis-prevent");
+
+    wrappers.forEach((el) => {
+      el.addEventListener("mouseenter", pause);
+      el.addEventListener("mouseleave", resume);
+    });
 
     return () => {
-      if (script.parentNode) {
-        document.body.removeChild(script);
-      }
+      wrappers.forEach((el) => {
+        el.removeEventListener("mouseenter", pause);
+        el.removeEventListener("mouseleave", resume);
+      });
+      resume();
     };
-  }, []);
+  }, [posts]);
 
   const renderPost = (urn: string) => (
-    <div key={urn} className="linkedin-post-wrapper">
+    <div key={urn} className="linkedin-post-wrapper" data-lenis-prevent>
       <iframe
         src={`https://www.linkedin.com/embed/feed/update/${urn}?collapsed=1`}
-        height="668"
+        height="400"
         width="504"
         frameBorder="0"
         allowFullScreen
         title="Embedded post"
+        loading="lazy"
       />
     </div>
   );

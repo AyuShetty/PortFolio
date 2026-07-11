@@ -5,24 +5,33 @@ import Lenis from "lenis";
 
 export function useSmoothScroll() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.15,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.2,
-    });
+    // Small delay so Lenis doesn't conflict with intro overlay scroll lock
+    const timer = setTimeout(() => {
+      const lenis = new Lenis({
+        duration: 0.9,
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.0,
+        syncTouch: false,
+        prevent: (node: Element) =>
+          node.hasAttribute("data-lenis-prevent") ||
+          node.closest("[data-lenis-prevent]") !== null,
+      });
 
-    let rafId = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
+      let rafId = 0;
+      const raf = (time: number) => {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+
       rafId = requestAnimationFrame(raf);
-    };
 
-    rafId = requestAnimationFrame(raf);
+      return () => {
+        cancelAnimationFrame(rafId);
+        lenis.destroy();
+      };
+    }, 100);
 
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
+    return () => clearTimeout(timer);
   }, []);
 }

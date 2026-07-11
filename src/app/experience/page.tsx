@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Professional experience spanning software engineering, Web3, product development, technical marketing, and leadership across industry and university organizations.",
+  description: "Professional experience spanning software engineering, full-stack development, AI integration, and leadership across industry and university organizations.",
 };
 
 export default function ExperiencePage() {
@@ -15,7 +15,7 @@ export default function ExperiencePage() {
     <main className="content-layout">
       <header className="content-hero">
         <h1>Experience</h1>
-        <p>Professional experience spanning software engineering, Web3, product development, technical marketing, and leadership across industry and university organizations.</p>
+        <p>Professional experience spanning software engineering, full-stack development, AI integration, and leadership across industry and university organizations.</p>
         <div style={{ marginTop: "1.5rem" }}>
           <ResumeDownloadButton />
         </div>
@@ -26,7 +26,7 @@ export default function ExperiencePage() {
 
       <section className="page-cta">
         <h3>Explore project work</h3>
-        <p>See what I've built across Web3, AI, and product engineering</p>
+        <p>See what I've built across software engineering, AI, and product development</p>
         <Link href="/projects" className="cta-button">View Projects</Link>
       </section>
     </main>
