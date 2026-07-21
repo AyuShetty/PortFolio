@@ -61,7 +61,11 @@ export async function getGalleryImages(folder: string): Promise<GalleryImage[]> 
 
     for (const fileName of orderedFiles) {
       const meta = metadataMap.get(fileName);
-      const cleanName = fileName.replace(/[-_]/g, " ").replace(/\.[^.]+$/, "");
+      const isHexOrUuid = /^[0-9A-Fa-f]{8}|^[0-9A-Fa-f-]{32,}/i.test(fileName);
+      const rawCleanName = fileName.replace(/[-_]/g, " ").replace(/\.[^.]+$/, "");
+      const cleanName = isHexOrUuid
+        ? `${folder ? folder.charAt(0).toUpperCase() + folder.slice(1) : "Gallery"} Image`
+        : rawCleanName;
       
       // Skip blur data URL generation to improve performance during development
       // This can be re-enabled once other issues are resolved
