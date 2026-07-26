@@ -35,7 +35,8 @@ export const metadata: Metadata = {
   description:
     "Software engineer and product developer. Full-stack developer with expertise in Web3, AI integration, and enterprise systems.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/ayush-portrait.jpeg",
+    apple: "/ayush-portrait.jpeg",
   },
   openGraph: {
     title: "Ayush Shetty | Portfolio",

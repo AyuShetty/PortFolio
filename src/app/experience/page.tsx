@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ResumeDownloadButton } from "@/components/ResumeDownloadButton";
+import { ExperienceHero } from "./ExperienceHero";
 import { ExperienceSection } from "./ExperienceSection";
 
 export const dynamic = "force-dynamic";
@@ -13,13 +13,7 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <main className="content-layout">
-      <header className="content-hero">
-        <h1>Experience</h1>
-        <p>Professional experience spanning software engineering, full-stack development, AI integration, and leadership across industry and university organizations.</p>
-        <div style={{ marginTop: "1.5rem" }}>
-          <ResumeDownloadButton />
-        </div>
-      </header>
+      <ExperienceHero />
 
       <ExperienceSection title="Professional Experience" category="professional" />
       <ExperienceSection title="Leadership & Organizations" category="leadership" />

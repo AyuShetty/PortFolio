@@ -1,9 +1,14 @@
 "use client";
 
-export function ResumeDownloadButton() {
+type DocumentDownloadButtonProps = {
+  href: string;
+  label: string;
+};
+
+function DocumentDownloadButton({ href, label }: DocumentDownloadButtonProps) {
   return (
     <a
-      href="/Ayush N shetty.pdf"
+      href={href}
       download
       style={{
         display: "inline-block",
@@ -18,7 +23,25 @@ export function ResumeDownloadButton() {
       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--button-resume-bg-hover)")}
       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--button-resume-bg)")}
     >
-      📄 Download Resume
+      📄 {label}
     </a>
+  );
+}
+
+export function ResumeDownloadButton() {
+  return (
+    <DocumentDownloadButton
+      href="/Ayush N shetty.pdf"
+      label="Download Resume"
+    />
+  );
+}
+
+export function CVDownloadButton() {
+  return (
+    <DocumentDownloadButton
+      href="/Ayush N shetty_CV.pdf"
+      label="Download CV"
+    />
   );
 }
